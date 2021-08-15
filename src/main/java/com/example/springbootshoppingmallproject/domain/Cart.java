@@ -19,9 +19,10 @@ public class Cart {
     @Column
     private Integer productCount;
 
-    @Column
-    private User user;
+    //@Column
+    //private User user;
 
-    private Product prodcut;
+    //@Column
+    //private Product prodcut;
 
 }
