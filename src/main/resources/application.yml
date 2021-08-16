@@ -7,14 +7,27 @@ spring:
     properties:
       hibernate:
         format_sql: true
-#    generate-ddl: false
-#    hibernate:
-#      ddl-auto: create-drop
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
   datasource:
 #    url: jdbc:mysql://localhost:3306/book_manager
 #    username: root
 #    password:
     initialization-mode: always
-
+  security:
+    user:
+      name: user1
+      password: 1111
+      roles: USER
+  sql:
+    init:
+      platform: h2
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    cache: false
+#    check-template-location: true
+#
 server:
   port: 8070
+
