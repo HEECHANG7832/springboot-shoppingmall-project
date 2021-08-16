@@ -4,6 +4,7 @@ import com.example.springbootshoppingmallproject.dto.ProductRequestDto;
 import com.example.springbootshoppingmallproject.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -14,10 +15,10 @@ import javax.validation.Valid;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/ProductApi")
+@RequestMapping("/product/api")
 public class ProductRestController {
 
-    private ProductService productService;
+    private final ProductService productService;
 
     //상품 전체 조회
     @GetMapping("/products")
