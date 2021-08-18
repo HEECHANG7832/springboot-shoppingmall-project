@@ -38,6 +38,6 @@ public class Product {
     private String titleImg;
 
     @Column
-    private String category;
+    private String largeCategory;
 
 }

@@ -8,10 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Column;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -21,11 +20,11 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     //전체 상품 조회
-    public List<Product> getProductList(String Category){
-        if(Category.equals("")){
+    public List<Product> getProductList(String largeCategory){
+        if(largeCategory.equals("")){
             return productRepository.findAll();
         }
-        return productRepository.findByCategory(Category);
+        return productRepository.findByLargeCategory(largeCategory);
     }
 
     // 상품 추가
@@ -38,7 +37,7 @@ public class ProductService {
                 .totalCount(productRequestDto.getTotalCount())
                 .productStatus((productRequestDto.getProductStatus()))
                 .titleImg(productRequestDto.getTitleImg())
-                .category(productRequestDto.getCategory())
+                .largeCategory(productRequestDto.getLargeCategory())
                 .build());
 
         return "상품이 추가되었습니다.";
@@ -53,12 +52,12 @@ public class ProductService {
             return null;
         }
         Product product = productOpt.get();
-
+        System.out.println(product.getProductName());
         return ProductResponseDto.builder()
                 .productName(product.getProductName())
                 .price(product.getPrice())
                 .titleImg(product.getTitleImg())
-                .category(product.getCategory())
+                .largeCategory(product.getLargeCategory())
                 .totalCount(product.getTotalCount())
                 .build();
     }
@@ -79,7 +78,7 @@ public class ProductService {
         product.setProductStatus(productRequestDto.getProductStatus());
         product.setTitleImg(productRequestDto.getTitleImg());
         product.setTotalCount(productRequestDto.getTotalCount());
-        product.setCategory(productRequestDto.getCategory());
+        product.setLargeCategory(productRequestDto.getLargeCategory());
 
         productRepository.save(product);
 

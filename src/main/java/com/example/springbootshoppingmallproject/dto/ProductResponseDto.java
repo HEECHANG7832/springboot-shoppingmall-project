@@ -20,5 +20,5 @@ public class ProductResponseDto {
     private Integer totalCount;
     private Integer productStatus;
     private String titleImg;
-    private String category;
+    private String largeCategory;
 }

@@ -9,25 +9,13 @@ spring:
         format_sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none #!!!!! 이거때문에 다시 만드는듯..
   datasource:
 #    url: jdbc:mysql://localhost:3306/book_manager
 #    username: root
 #    password:
     initialization-mode: always
-  security:
-    user:
-      name: user1
-      password: 1111
-      roles: USER
-  sql:
-    init:
-      platform: h2
-#  thymeleaf:
-#    prefix: classpath:/templates/
-#    cache: false
-#    check-template-location: true
-#
+
 server:
   port: 8070
 
