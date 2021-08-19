@@ -14,6 +14,7 @@ import javax.persistence.Column;
 public class ProductResponseDto {
 
     private String productName;
+    private String description;
     private Integer price;
     private Integer purchaseCount;
     private Integer limitCount;

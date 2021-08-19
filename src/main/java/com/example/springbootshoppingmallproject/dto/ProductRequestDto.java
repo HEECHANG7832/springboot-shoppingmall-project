@@ -20,27 +20,13 @@ public class ProductRequestDto {
 
     //@NotBlank(message = "상품명을 작성해 주세요")
     //@Size(max = 200, message = "상품명 길이 200")
-    @Column
     private String productName;
-
-    @Column
+    private String description;
     private Integer price;
-
-    @Column
     private Integer purchaseCount;
-
-    @Column
     private Integer limitCount;
-
-    @Column
     private Integer totalCount;
-
-    @Column
     private Integer productStatus;
-
-    @Column
     private String titleImg;
-
-    @Column
     private String largeCategory;
 }

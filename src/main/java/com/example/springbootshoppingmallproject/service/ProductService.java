@@ -21,7 +21,9 @@ public class ProductService {
 
     //전체 상품 조회
     public List<Product> getProductList(String largeCategory){
-        if(largeCategory.equals("")){
+        log.info("largeCategory : ", largeCategory);
+
+        if(largeCategory == null){
             return productRepository.findAll();
         }
         return productRepository.findByLargeCategory(largeCategory);
@@ -31,6 +33,7 @@ public class ProductService {
     public String addProduct(ProductRequestDto productRequestDto) {
         productRepository.save(Product.builder()
                 .productName(productRequestDto.getProductName())
+                .description((productRequestDto.getDescription()))
                 .price(productRequestDto.getPrice())
                 .purchaseCount(0)
                 .limitCount(productRequestDto.getTotalCount())
@@ -45,16 +48,20 @@ public class ProductService {
 
     //상품 조회
     public ProductResponseDto getProduct(Long id) {
+        log.info("ID : ", id);
+
         Optional<Product> productOpt = productRepository.findById(id);
 
         if (!productOpt.isPresent()){
             //throw new NotExistProductException("존재하지 않는 상품입니다.");
             return null;
         }
+
         Product product = productOpt.get();
-        System.out.println(product.getProductName());
+
         return ProductResponseDto.builder()
                 .productName(product.getProductName())
+                .description((product.getDescription()))
                 .price(product.getPrice())
                 .titleImg(product.getTitleImg())
                 .largeCategory(product.getLargeCategory())
@@ -74,6 +81,7 @@ public class ProductService {
         Product product = productOpt.get();
 
         product.setProductName(productRequestDto.getProductName());
+        product.setDescription(productRequestDto.getDescription());
         product.setPrice(productRequestDto.getPrice());
         product.setProductStatus(productRequestDto.getProductStatus());
         product.setTitleImg(productRequestDto.getTitleImg());
