@@ -48,7 +48,7 @@ public class ProductService {
 
     //상품 조회
     public ProductResponseDto getProduct(Long id) {
-        log.info("ID : ", id);
+        log.info("ID : " + id);
 
         Optional<Product> productOpt = productRepository.findById(id);
 
@@ -60,6 +60,7 @@ public class ProductService {
         Product product = productOpt.get();
 
         return ProductResponseDto.builder()
+                .id(product.getId())
                 .productName(product.getProductName())
                 .description((product.getDescription()))
                 .price(product.getPrice())

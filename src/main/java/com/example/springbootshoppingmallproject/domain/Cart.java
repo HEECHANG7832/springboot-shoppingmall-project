@@ -22,7 +22,7 @@ public class Cart {
     //@Column
     //private User user;
 
-    //@Column
-    //private Product prodcut;
-
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

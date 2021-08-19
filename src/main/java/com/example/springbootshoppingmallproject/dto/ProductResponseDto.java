@@ -13,6 +13,7 @@ import javax.persistence.Column;
 @Builder
 public class ProductResponseDto {
 
+    private Long id;
     private String productName;
     private String description;
     private Integer price;
