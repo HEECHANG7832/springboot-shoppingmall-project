@@ -1,7 +1,14 @@
 spring:
+  profiles:
+    active: "oauth"
+
+  session:
+    store-type: jdbc
+
   h2:
     console:
       enabled: true
+
   jpa:
     show-sql: true
     properties:
@@ -10,11 +17,11 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: none #!!!!! 이거때문에 다시 만드는듯..
-  datasource:
+
+#  datasource:
 #    url: jdbc:mysql://localhost:3306/book_manager
 #    username: root
 #    password:
-    initialization-mode: always
 
 server:
   port: 8070

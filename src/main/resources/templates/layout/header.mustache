@@ -40,16 +40,24 @@
                                 <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item"> <a class="nav-link" href="/carts">Cart</a></li>
                     </ul>
 
-                    <a class="dropdown-item" href="/carts">Cart</a></li>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" onclick="location.href='/1234'">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        {{#userName}}
+                            <li class="nav-item">
+                                Logged in {{userName}}
+                            </li>
+                            <li class="nav-item" ><a href="/logout" class="nav-link" role="button">Logout</a></li>
+                        {{/userName}}
+                        {{^userName}}
+                            <li class="nav-item"> <a href="/oauth2/authorization/google" class="btn btn btn-outline-dark" role="button">Google Login</a></li>
+                            <li class="nav-item"> <a href="/oauth2/authorization/naver" class="btn btn btn-outline-success-" role="button">Naver Login</a></li>
+                        {{/userName}}
+                        </ul>
                     </form>
+
                 </div>
             </div>
         </nav>

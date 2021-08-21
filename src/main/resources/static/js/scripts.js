@@ -27,7 +27,7 @@ var main = {
 
         $.ajax({
             type: 'POST',
-            url: '/cart/api/carts',
+            url: '/api/v1/carts',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
