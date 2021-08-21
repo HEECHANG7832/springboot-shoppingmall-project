@@ -5,6 +5,8 @@ import com.example.springbootshoppingmallproject.domain.Cart;
 import com.example.springbootshoppingmallproject.domain.CartRepository;
 import com.example.springbootshoppingmallproject.domain.Product;
 import com.example.springbootshoppingmallproject.domain.ProductRepository;
+import com.example.springbootshoppingmallproject.domain.user.User;
+import com.example.springbootshoppingmallproject.domain.user.UserRepository;
 import com.example.springbootshoppingmallproject.dto.CartRequestDto;
 import com.example.springbootshoppingmallproject.dto.CartResponseDto;
 import lombok.AllArgsConstructor;
@@ -24,16 +26,16 @@ public class CartService {
 
     private ProductRepository productRepository;
     private CartRepository cartRepository;
+    private UserRepository userRepository;
 
-    //
-    public List<CartResponseDto> getCartList(){
-        return cartRepository.findAll().stream().map(CartResponseDto::new).collect(Collectors.toList());
+    public List<CartResponseDto> getCartList(Long userId){
+        return cartRepository.findAllByUserId(userId).stream().map(CartResponseDto::new).collect(Collectors.toList());
     }
 
-    //
     public void addCart(CartRequestDto cartRequestDto) {
 
-        //
+        User user = userRepository.findById(cartRequestDto.getUserId()).orElseThrow(()-> new RuntimeException("존재하지 않는 유저입니다."));
+
         Optional<Product> productOpt = productRepository.findById(cartRequestDto.getProductId());
 
 //        if (!productOpt.isPresent())
@@ -45,6 +47,7 @@ public class CartService {
 //            throw new ProductLimitCountException("재고가 없습니다.");
 
         cartRepository.save(Cart.builder()
+                            .user(user)
                             .product(product)
                             .productCount(cartRequestDto.getProductCount())
                             .build());

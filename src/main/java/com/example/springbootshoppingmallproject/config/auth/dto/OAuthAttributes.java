@@ -1,5 +1,6 @@
 package com.example.springbootshoppingmallproject.config.auth.dto;
 
+import com.example.springbootshoppingmallproject.domain.Cart;
 import com.example.springbootshoppingmallproject.domain.user.Role;
 import com.example.springbootshoppingmallproject.domain.user.User;
 import lombok.Builder;

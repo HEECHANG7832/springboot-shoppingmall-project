@@ -27,7 +27,7 @@ public class HomeController {
         model.addAttribute("products", productService.getProductList(null));
 
         if (user != null) {
-            model.addAttribute("userName", user.getName());
+            model.addAttribute("user", user);
         }
 
         return "index";
@@ -40,7 +40,7 @@ public class HomeController {
         model.addAttribute("product", productService.getProduct(id));
 
         if (user != null) {
-            model.addAttribute("userName", user.getName());
+            model.addAttribute("user", user);
         }
 
         return "product";
@@ -53,10 +53,10 @@ public class HomeController {
     @GetMapping("/carts")
     public String getCartList(Model model, @LoginUser SessionUser user) {
         log.info("link /carts");
-        model.addAttribute("cartlist", cartService.getCartList());
+        model.addAttribute("cartlist", cartService.getCartList(user.getId()));
 
         if (user != null) {
-            model.addAttribute("userName", user.getName());
+            model.addAttribute("user", user);
         }
 
         return "carts";

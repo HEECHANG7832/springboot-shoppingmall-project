@@ -25,11 +25,10 @@ public class CartRestController {
 
     // 카트 조회
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    //@GetMapping("/users/{userId}/carts/{page}")
-    @GetMapping("/carts")
-    public ResponseEntity<?> getCartList() {
-        return ResponseEntity.ok().body(cartService.getCartList());
-    }
+//    @GetMapping("/users/{userId}/carts")
+//    public ResponseEntity<?> getCartList(@PathVariable("userId") Long userId) {
+//        return ResponseEntity.ok().body(cartService.getCartList(userId));
+//    }
 
     // 카트 추가
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")

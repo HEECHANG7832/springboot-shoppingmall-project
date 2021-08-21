@@ -1,9 +1,11 @@
 package com.example.springbootshoppingmallproject.domain.user;
 
 import com.example.springbootshoppingmallproject.domain.BaseTimeEntity;
+import com.example.springbootshoppingmallproject.domain.Cart;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 

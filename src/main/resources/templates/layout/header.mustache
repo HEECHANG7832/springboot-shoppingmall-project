@@ -45,16 +45,16 @@
 
                     <form class="d-flex">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        {{#userName}}
+                        {{#user}}
                             <li class="nav-item">
-                                Logged in {{userName}}
+                                {{user.userName}}
                             </li>
                             <li class="nav-item" ><a href="/logout" class="nav-link" role="button">Logout</a></li>
-                        {{/userName}}
-                        {{^userName}}
+                        {{/user}}
+                        {{^user}}
                             <li class="nav-item"> <a href="/oauth2/authorization/google" class="btn btn btn-outline-dark" role="button">Google Login</a></li>
-                            <li class="nav-item"> <a href="/oauth2/authorization/naver" class="btn btn btn-outline-success-" role="button">Naver Login</a></li>
-                        {{/userName}}
+                            <li class="nav-item"> <a href="/oauth2/authorization/naver" class="btn btn btn-outline-success" role="button">Naver Login</a></li>
+                        {{/user}}
                         </ul>
                     </form>
 

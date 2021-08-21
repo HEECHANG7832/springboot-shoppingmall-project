@@ -1,8 +1,10 @@
 package com.example.springbootshoppingmallproject.domain;
 
+import com.example.springbootshoppingmallproject.domain.user.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Getter
@@ -19,8 +21,9 @@ public class Cart {
     @Column
     private Integer productCount;
 
-    //@Column
-    //private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "product_id")

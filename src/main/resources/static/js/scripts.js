@@ -21,6 +21,7 @@ var main = {
     },
     addCart : function () {
         var data = {
+            userId: $('#user_id').val(),
             productId: $('#product_id').val(),
             productCount: $('#product_count').val(),
         };
