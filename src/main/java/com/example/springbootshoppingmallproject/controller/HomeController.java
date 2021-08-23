@@ -2,6 +2,7 @@ package com.example.springbootshoppingmallproject.controller;
 
 import com.example.springbootshoppingmallproject.config.auth.LoginUser;
 import com.example.springbootshoppingmallproject.config.auth.dto.SessionUser;
+import com.example.springbootshoppingmallproject.dto.ProductRequestDto;
 import com.example.springbootshoppingmallproject.service.CartService;
 import com.example.springbootshoppingmallproject.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -37,8 +38,10 @@ public class HomeController {
     @GetMapping("/product/{id}")
     public String product(Model model, @PathVariable Long id, @LoginUser SessionUser user){
         log.info("link /product/{id}");
-        model.addAttribute("product", productService.getProduct(id));
 
+
+        model.addAttribute("product", productService.getProduct(id));
+        model.addAttribute("relatedproducts", productService.getRelatedProductList(id));
         if (user != null) {
             model.addAttribute("user", user);
         }

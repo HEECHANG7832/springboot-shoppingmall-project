@@ -70,6 +70,14 @@ public class ProductService {
                 .build();
     }
 
+    public List<Product> getRelatedProductList(Long id){
+        log.info("product Id : ", id);
+
+        String largeCategory = productRepository.findById(id).get().getLargeCategory();
+
+        return productRepository.findByLargeCategory(largeCategory);
+    }
+
     // 상품 정보 수정
     public String updateProduct(Long id, ProductRequestDto productRequestDto) {
         Optional<Product> productOpt = productRepository.findById(id);
