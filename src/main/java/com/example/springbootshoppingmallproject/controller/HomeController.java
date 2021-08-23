@@ -62,10 +62,10 @@ public class HomeController {
         return "carts";
     }
 
-//    @GetMapping("/login")
-//    public String login(){
-//        return "loginForm";
-//    }
+    @GetMapping("/loginform")
+    public String login(){
+        return "loginform";
+    }
 //
 //    @GetMapping("/login-error")
 //    public String loginError(Model model){

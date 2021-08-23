@@ -1,9 +1,10 @@
 {{>layout/header}}
 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link href="/css/products.css" rel="stylesheet" />
+
         <!-- Header-->
         <header class="bg-white">
-            <img class="card-img" src="https://gal.cdn.renderosity.com/images/image_2743297/7e11baaf4a94e34f4838fd96cfa6d32d_original.jpg?v=1492507146" alt="..."/>
-
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-black">
                     <h1 class="display-4 fw-bolder"> Art Auctions </h1>
@@ -11,7 +12,19 @@
                 </div>
             </div>
 
+            <img class="card-img" src="https://gal.cdn.renderosity.com/images/image_2743297/7e11baaf4a94e34f4838fd96cfa6d32d_original.jpg?v=1492507146" alt="..."/>
         </header>
+
+        <!-- Header-->
+        <header class="bg-white">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-black">
+                    <h5 class="display-8"> Best Item Top 10 </h5>
+                    <p class="lead fw-normal text-black-50 mb-0">List of most popular products</p>
+                </div>
+            </div>
+        </header>
+
 
         <!-- Section-->
         <section class="py-5">
@@ -20,32 +33,35 @@
 
                     <!-- -->
                     {{#products}}
-                    <div class="col mb-6">
-                            <div class="card h-120">
-
-                                <div  style=" cursor: pointer;" onclick="location.href='/product/{{id}}'">
-                                <!-- Product image-->
-                                <img class="card-img-top" src="{{titleImg}}" alt="..." />
-
-                                <!-- Product details-->
-                                <div class="card-body p-4">
-                                    <div class="text-center">
-
-                                        <!-- Product name-->
-                                        <h5 class="fw-bolder">{{productName}}</h5>
-
-                                        <!-- Product price-->
-                                        ${{price}}
-                                    </div>
-                                </div>
-                                </div>
-
-                                <!-- Product actions-->
-                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"> <a class="btn btn-outline-dark mt-auto">Add to Cart</a> </div>
-                                </div>
-
+                    <div class="col-md-4 col-sm-6">
+                        <div class="product-grid8" style=" cursor: pointer;" onclick="location.href='/product/{{id}}'">
+                            <div class="product-image8">
+                                <a href="#">
+                                    <img class="pic-1" src="{{titleImg}}">
+                                    <img class="pic-2" src="{{titleImg}}">
+                                </a>
+                                <ul class="social">
+                                    <li><a href="" class="fa fa-search"></a></li>
+                                    <li><a href="" class="fa fa-shopping-bag"></a></li>
+                                    <li><a href="" class="fa fa-shopping-cart"></a></li>
+                                </ul>
+                                <span class="product-discount-label">-20%</span>
                             </div>
+                            <div class="product-content">
+                                <div class="price">$ {{price}}
+                                    <!-- <span>$ {{price}}</span> -->
+                                </div>
+                                <ul class="rating">
+                                    <li class="fa fa-star"></li>
+                                    <li class="fa fa-star"></li>
+                                    <li class="fa fa-star"></li>
+                                    <li class="fa fa-star disable"></li>
+                                    <li class="fa fa-star disable"></li>
+                                </ul>
+                                <span class="product-shipping">Free Shipping</span>
+                                <h3 class="title"><a href="#">{{productName}}</a></h3>
+                            </div>
+                        </div>
                     </div>
                     {{/products}}
 

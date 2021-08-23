@@ -1,36 +1,103 @@
 {{>layout/header}}
+        <link href="/css/carts.css" rel="stylesheet" />
 
         <!-- Related items section-->
         <section class="py-5 bg-light">
             <div class="container px-4 px-lg-5 mt-5">
                 <h2 class="fw-bolder mb-4">Cart products</h2>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
-
-                    {{#cartlist}}
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{product.titleImg}}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{product.productName}}</h5>
-                                    <!-- Product price-->
-                                    ${{product.price}}
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    {{/cartlist}}
-
                 </div>
             </div>
         </section>
+
+<div class="cart-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="table-cart">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#cartlist}}
+                        <tr>
+                            <td>
+                                <div class="display-flex align-center">
+                                    <div class="img-product">
+                                        <img src="{{product.titleImg}}" alt="" class="mCS_img_loaded">
+                                    </div>
+                                    <div class="name-product">
+                                        {{product.productName}}
+                                    </div>
+                                    <div class="price">
+                                        ${{product.price}}
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="product-count">
+                                <form action="#" class="count-inlineflex">
+                                    <div class="qtyminus">-</div>
+                                    <input type="text" name="quantity" value="1" class="qty">
+                                    <div class="qtyplus">+</div>
+                                </form>
+                            </td>
+                            <td>
+                                <div class="total">
+                                    ${{product.price}}
+                                </div>
+                            </td>
+                            <td>
+                                <a href="#" title="">
+                                    <img src="images/icons/delete.png" alt="" class="mCS_img_loaded">
+                                </a>
+                            </td>
+                        </tr>
+                        {{/cartlist}}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-cart -->
+            </div>
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-4">
+                <div class="cart-totals">
+                    <h3>Cart Totals</h3>
+                    <form action="#" method="get" accept-charset="utf-8">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td class="subtotal">$2,589.00</td>
+                            </tr>
+                            <tr>
+                                <td>Shipping</td>
+                                <td class="free-shipping">Free Shipping</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td>Total</td>
+                                <td class="price-total">$1,591.00</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="btn-cart-totals">
+                            <a href="#" class="update round-black-btn" title="">Update Cart</a>
+                            <a href="#" class="checkout round-black-btn" title="">Proceed to Checkout</a>
+                        </div>
+                        <!-- /.btn-cart-totals -->
+                    </form>
+                    <!-- /form -->
+                </div>
+                <!-- /.cart-totals -->
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+    </div>
+</div>
         
 {{>layout/footer}}
