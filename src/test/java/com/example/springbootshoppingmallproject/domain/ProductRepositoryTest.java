@@ -15,12 +15,5 @@ class ProductRepositoryTest {
 
     @Test
     void findByCategoryTest() { // create, read, update, delete
-
-        productRepository.save(new Product(2L, "ball2", 1, 1, 1, 1, 1, "url", "sports"));
-
-        List<Product> products = productRepository.findByLargeCategory("sports");
-
-        assertThat(products.get(0).getLargeCategory()).isEqualTo("sports");
-
     }
 }
