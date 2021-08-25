@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    private final LoginUserArgumentResolver loginUserArgumentResolver;
+    private final LoginUserArgumentResolver loginUserArgumentResolver; //@LoginUser를 처리할 Resolver를 설정에 추가
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {

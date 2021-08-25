@@ -1,9 +1,9 @@
 spring:
   profiles:
-    active: "oauth"
+    active: "oauth" # application-oauth.properties 사용
 
   session:
-    store-type: jdbc
+    store-type: jdbc # 세션 저장소를 jdbc로 선택 SPRING_SESSION, SPRING_SESSION_ATTRIBUTES DB생성 로그인을 하면 세션이 생성된다
 
   h2:
     console:
