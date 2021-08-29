@@ -25,7 +25,7 @@ public class HomeController {
     public String index(Model model, @LoginUser SessionUser user){
         log.info("link /");
 
-        model.addAttribute("products", productService.getProductList(null));
+        model.addAttribute("products", productService.getProductList());
 
         if (user != null) {
             model.addAttribute("user", user);
@@ -39,7 +39,6 @@ public class HomeController {
     public String product(Model model, @PathVariable Long id, @LoginUser SessionUser user){
         log.info("link /product/{id}");
 
-
         model.addAttribute("product", productService.getProduct(id));
         model.addAttribute("relatedproducts", productService.getRelatedProductList(id));
         if (user != null) {
@@ -47,6 +46,20 @@ public class HomeController {
         }
 
         return "product";
+    }
+
+    //전체 상품 상세보기
+    @GetMapping("/productlist/{page}")
+    public String ProductList(Model model, @PathVariable int page, @LoginUser SessionUser user){
+        log.info("link /productlist");
+
+        model.addAttribute("products", productService.getPageProductListByLargeCategory(page, null));
+
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
+        return "productlist";
     }
 
     //

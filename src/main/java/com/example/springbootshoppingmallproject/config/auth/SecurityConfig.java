@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests() //antMatchers 사용을 위함
                     //권한 관리 대상을 지정
                     .antMatchers("/", "/product", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
-                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                    //.antMatchers("/api/v1/**").hasRole(Role.USER.name())
                     //설정 외 요청들
                     .anyRequest().permitAll()
                 .and()

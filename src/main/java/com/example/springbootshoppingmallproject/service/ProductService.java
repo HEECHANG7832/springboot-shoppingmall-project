@@ -6,6 +6,10 @@ import com.example.springbootshoppingmallproject.dto.ProductRequestDto;
 import com.example.springbootshoppingmallproject.dto.ProductResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,13 +24,21 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     //전체 상품 조회
-    public List<Product> getProductList(String largeCategory){
-        log.info("largeCategory : ", largeCategory);
+    public List<Product> getProductList(){
+        log.info("getProductList() ");
+        return productRepository.findAll();
+    }
+
+    public Page<Product> getPageProductListByLargeCategory(int page, String largeCategory){
+        log.info("getPageProductListByLargeCategory() page : ", page, "largeCategory : ", largeCategory);
+
+        int realPage = page - 1;
+        Pageable pageable = PageRequest.of(realPage, 8);
 
         if(largeCategory == null){
-            return productRepository.findAll();
+            return productRepository.findAll(pageable);
         }
-        return productRepository.findByLargeCategory(largeCategory);
+        return productRepository.findByLargeCategory(largeCategory, pageable);
     }
 
     // 상품 추가
@@ -70,12 +82,14 @@ public class ProductService {
                 .build();
     }
 
-    public List<Product> getRelatedProductList(Long id){
+    public Page<Product> getRelatedProductList(Long id){
         log.info("product Id : ", id);
 
         String largeCategory = productRepository.findById(id).get().getLargeCategory();
 
-        return productRepository.findByLargeCategory(largeCategory);
+        Pageable pageable = PageRequest.of(0, 4);
+
+        return productRepository.findByLargeCategory(largeCategory, pageable);
     }
 
     // 상품 정보 수정

@@ -23,7 +23,7 @@ public class ProductRestController {
     //상품 전체 조회
     @GetMapping("/products")
     public ResponseEntity<?> getProductList(@RequestParam(value = "category", required = false) String Category){
-        return ResponseEntity.ok().body(productService.getProductList(Category));
+        return ResponseEntity.ok().body(productService.getProductList());
     }
 
     //상품 등록

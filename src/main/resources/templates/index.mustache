@@ -1,21 +1,13 @@
 {{>layout/header}}
 
         <link href="/css/products.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/css/owl.carousel.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/owl.carousel.min.js"></script>
 
         <!-- Header-->
         <header class="bg-white">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-black">
-                    <h1 class="display-4 fw-bolder"> Art Auctions </h1>
-                    <p class="lead fw-normal text-black-50 mb-0">Bid on paintings, prints, photographs and more by the world’s most sought-after artists.</p>
-                </div>
-            </div>
-
             <img class="card-img" src="https://gal.cdn.renderosity.com/images/image_2743297/7e11baaf4a94e34f4838fd96cfa6d32d_original.jpg?v=1492507146" alt="..."/>
-        </header>
-
-        <!-- Header-->
-        <header class="bg-white">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-black">
                     <h5 class="display-8"> Best Item Top 10 </h5>
@@ -24,10 +16,56 @@
             </div>
         </header>
 
+<section>
+    <div class="container px-4 px-lg-5 mt-5">
+<div class="owl-carousel">
+    <!-- -->
+    {{#products}}
+        <div class="product-grid8" style=" cursor: pointer;" onclick="location.href='/product/{{id}}'">
+            <div class="product-image8">
+                <a href="#">
+                    <img class="pic-1" src="{{titleImg}}">
+                    <img class="pic-2" src="{{titleImg}}">
+                </a>
+
+                <span class="product-discount-label">1위</span>
+            </div>
+            <div class="product-content text-center">
+                <h3 class="title">{{productName}}</h3>
+                <h3 class="title">$ {{price}}
+                    <!-- <span>$ {{price}}</span> -->
+                </h3>
+            </div>
+        </div>
+    {{/products}}
+</div>
+</div>
+</div>
+</section>
+
+<script>
+    $('.owl-carousel').owlCarousel({
+        items: 3,
+        margin: 10,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true
+    });
+</script>
+        <!-- Header-->
+        <header class="bg-white py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-black">
+                    <h1 class="display-8 fw-bolder"> Art Auctions </h1>
+                    <p class="lead fw-normal text-black-50 mb-0">Bid on paintings, prints, photographs and more by the world’s most sought-after artists.</p>
+                </div>
+            </div>
+        </header>
 
         <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
+        <section>
+            <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
                     <!-- -->
@@ -69,5 +107,6 @@
                 </div>
             </div>
         </section>
+
 
 {{>layout/footer}}

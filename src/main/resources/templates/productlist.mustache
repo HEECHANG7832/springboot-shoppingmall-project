@@ -1,0 +1,66 @@
+{{>layout/header}}
+
+    <link href="/css/products.css" rel="stylesheet" />
+
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+            <!-- -->
+            {{#products}}
+                <div class="col-md-4 col-sm-6">
+                    <div class="product-grid8" style=" cursor: pointer;" onclick="location.href='/product/{{id}}'">
+                        <div class="product-image8">
+                            <a href="#">
+                                <img class="pic-1" src="{{titleImg}}">
+                                <img class="pic-2" src="{{titleImg}}">
+                            </a>
+                            <ul class="social">
+                                <li><a href="" class="fa fa-search"></a></li>
+                                <li><a href="" class="fa fa-shopping-bag"></a></li>
+                                <li><a href="" class="fa fa-shopping-cart"></a></li>
+                            </ul>
+                            <span class="product-discount-label">-20%</span>
+                        </div>
+                        <div class="product-content">
+                            <div class="price">$ {{price}}
+                                <!-- <span>$ {{price}}</span> -->
+                            </div>
+                            <ul class="rating">
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star disable"></li>
+                                <li class="fa fa-star disable"></li>
+                            </ul>
+                            <span class="product-shipping">Free Shipping</span>
+                            <h3 class="title"><a href="#">{{productName}}</a></h3>
+                        </div>
+                    </div>
+                </div>
+            {{/products}}
+
+
+
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row" style="padding-top:50px">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
+            <!-- javascript로 구현? -->
+            <div class="list-group list-group-horizontal">
+                <a href="/productlist/1" class="list-group-item active">1</a>
+                <a href="/productlist/2" class="list-group-item">2</a>
+                <a href="/productlist/3" class="list-group-item">3</a>
+                <a href="/productlist/4" class="list-group-item">4</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+        
+{{>layout/footer}}
