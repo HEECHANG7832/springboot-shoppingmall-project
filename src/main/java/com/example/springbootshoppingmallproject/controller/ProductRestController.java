@@ -38,6 +38,12 @@ public class ProductRestController {
         return ResponseEntity.ok().body(productService.getProduct(id));
     }
 
+    //상품 Top8 랭킹 조회
+    @GetMapping("/top8products")
+    public ResponseEntity<?> getProductByOrderByPurchaseCountDesc(@PathVariable Long id){
+        return ResponseEntity.ok().body(productService.getProductListSortByPurchaseCountDesc());
+    }
+
     //상품 수정
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/products/{id}")

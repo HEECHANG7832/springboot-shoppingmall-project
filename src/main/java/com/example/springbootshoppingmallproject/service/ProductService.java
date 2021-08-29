@@ -12,8 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -39,6 +38,22 @@ public class ProductService {
             return productRepository.findAll(pageable);
         }
         return productRepository.findByLargeCategory(largeCategory, pageable);
+    }
+
+    public List<ProductResponseDto.MainProductResponseDto> getProductListSortByPurchaseCountDesc(){
+        log.info("getProductListSortByPurchaseCount()");
+
+        List<Product> products = productRepository.findTop8ByOrderByPurchaseCountDesc();
+
+        List<ProductResponseDto.MainProductResponseDto> mainProductResponseDtoList = new ArrayList<>();
+
+        Integer index = 1;
+        for(Product product : products)
+        {
+            mainProductResponseDtoList.add(new ProductResponseDto.MainProductResponseDto(product, index++));
+        }
+
+        return mainProductResponseDtoList;
     }
 
     // 상품 추가

@@ -17,10 +17,11 @@
         </header>
 
 <section>
+
     <div class="container px-4 px-lg-5 mt-5">
-<div class="owl-carousel">
+<div class="owl-carousel-4col owl-carousel owl-theme owl-loaded owl-drag">
     <!-- -->
-    {{#products}}
+    {{#rankproducts}}
         <div class="product-grid8" style=" cursor: pointer;" onclick="location.href='/product/{{id}}'">
             <div class="product-image8">
                 <a href="#">
@@ -28,7 +29,7 @@
                     <img class="pic-2" src="{{titleImg}}">
                 </a>
 
-                <span class="product-discount-label">1위</span>
+                <span class="product-discount-label">{{index}}위</span>
             </div>
             <div class="product-content text-center">
                 <h3 class="title">{{productName}}</h3>
@@ -37,7 +38,7 @@
                 </h3>
             </div>
         </div>
-    {{/products}}
+    {{/rankproducts}}
 </div>
 </div>
 </div>

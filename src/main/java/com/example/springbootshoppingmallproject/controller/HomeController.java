@@ -26,6 +26,7 @@ public class HomeController {
         log.info("link /");
 
         model.addAttribute("products", productService.getProductList());
+        model.addAttribute("rankproducts", productService.getProductListSortByPurchaseCountDesc());
 
         if (user != null) {
             model.addAttribute("user", user);

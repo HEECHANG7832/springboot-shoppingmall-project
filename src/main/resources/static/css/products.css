@@ -3,7 +3,7 @@
 .product-grid8 .product-image8{border:1px solid #e4e9ef;position:relative;transition:all .3s ease 0s}
 .product-grid8:hover .product-image8{box-shadow:0 0 10px rgba(0,0,0,.15)}
 .product-grid8 .product-image8 a{display:block}
-.product-grid8 .product-image8 img{width:100%;height:400px; object-fit: cover;}
+.product-grid8 .product-image8 img{width:100%;height:auto; object-fit: cover;}
 .product-grid8 .pic-1{opacity:1;transition:all .5s ease-out 0s}
 .product-grid8:hover .pic-1{opacity:0}
 .product-grid8 .pic-2{opacity:0;position:absolute;top:0;left:0;transition:all .5s ease-out 0s}
@@ -33,35 +33,3 @@
 .product-grid8 .rating li.disable{color:#dcdcdc}
 
 @media only screen and (max-width:990px){.product-grid8{margin-bottom:30px}}
-
-
-/* equal card height */
-.row-equal > div[class*='col-'] {
-    display: flex;
-    flex: 1 0 auto;
-}
-
-.row-equal .card {
-    width: 100%;
-}
-
-/* ensure equal card height inside carousel */
-.carousel-inner>.row-equal.active,
-.carousel-inner>.row-equal.next,
-.carousel-inner>.row-equal.prev {
-    display: flex;
-}
-
-/* prevent flicker during transition */
-.carousel-inner>.row-equal.active.left,
-.carousel-inner>.row-equal.active.right {
-    opacity: 0.5;
-    display: flex;
-}
-
-
-/* control image height */
-.card-img-top-250 {
-    max-height: 250px;
-    overflow:hidden;
-}
