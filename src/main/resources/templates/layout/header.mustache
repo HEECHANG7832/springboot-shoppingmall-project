@@ -33,6 +33,8 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/productlist/1">All Products</a></li>
+                        <!--
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -42,6 +44,7 @@
                                 <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                             </ul>
                         </li>
+                        -->
                         <li class="nav-item"> <a class="nav-link" href="/carts">Cart</a></li>
                     </ul>
 
@@ -49,13 +52,13 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         {{#user}}
                             <li class="nav-item">
-                                {{user.name}}
+                                <h5 class="navbar">Logged in as {{user.name}} </h5>
                             </li>
                             <li class="nav-item" ><a href="/logout" class="nav-link" role="button">Logout</a></li>
                         {{/user}}
                         {{^user}}
-                            <li class="nav-item"> <a href="/oauth2/authorization/google" class="btn btn btn-outline-dark" role="button">Google Login</a></li>
-                            <li class="nav-item"> <a href="/oauth2/authorization/naver" class="btn btn btn-outline-success" role="button">Naver Login</a></li>
+                            <li class="nav-item"> <a href="/oauth2/authorization/google" class="btn btn btn-outline-dark m-1" role="button">Google Login</a></li>
+                            <li class="nav-item"> <a href="/oauth2/authorization/naver" class="btn btn btn-outline-success m-1" role="button">Naver Login</a></li>
 
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ml-auto">

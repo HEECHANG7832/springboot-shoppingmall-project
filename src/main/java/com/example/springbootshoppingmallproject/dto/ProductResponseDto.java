@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @Builder
 public class ProductResponseDto {
 
@@ -24,8 +23,8 @@ public class ProductResponseDto {
     private String largeCategory;
 
     @Getter
-    @AllArgsConstructor
     @NoArgsConstructor
+    @AllArgsConstructor
     @Builder
     public static class MainProductResponseDto implements Serializable {
         private Integer index;

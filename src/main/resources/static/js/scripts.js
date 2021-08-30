@@ -6,6 +6,10 @@ var main = {
             _this.addCart();
         });
 
+        $('#btn-saveReview').on('click', function () {
+            _this.saveReview();
+        });
+
         $('#btn-save').on('click', function () {
             _this.save();
         });
@@ -18,6 +22,26 @@ var main = {
             _this.delete();
         });
 
+    },
+    saveReview : function () {
+        var data = {
+            title: $('#title').val(),
+            content: $('#content').val(),
+            rate: 0,
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/products/'+ $('#product_id').val() + '/reviews',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('글이 등록되었습니다.');
+            window.location.href = '/product/'+ $('#product_id').val();
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
     },
     addCart : function () {
         var data = {

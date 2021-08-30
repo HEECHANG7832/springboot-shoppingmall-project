@@ -5,6 +5,7 @@ import com.example.springbootshoppingmallproject.config.auth.dto.SessionUser;
 import com.example.springbootshoppingmallproject.dto.ProductRequestDto;
 import com.example.springbootshoppingmallproject.service.CartService;
 import com.example.springbootshoppingmallproject.service.ProductService;
+import com.example.springbootshoppingmallproject.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class HomeController {
 
     private final ProductService productService;
     private final CartService cartService;
+    private final ReviewService reviewService;
 
     //메인 화면 상품 리스트
     @GetMapping("/")
@@ -42,6 +44,8 @@ public class HomeController {
 
         model.addAttribute("product", productService.getProduct(id));
         model.addAttribute("relatedproducts", productService.getRelatedProductList(id));
+        model.addAttribute("reviews", reviewService.getReviewList(id));
+
         if (user != null) {
             model.addAttribute("user", user);
         }
@@ -70,10 +74,10 @@ public class HomeController {
     @GetMapping("/carts")
     public String getCartList(Model model, @LoginUser SessionUser user) {
         log.info("link /carts");
-        model.addAttribute("cartlist", cartService.getCartList(user.getId()));
 
         if (user != null) {
             model.addAttribute("user", user);
+            model.addAttribute("cartlist", cartService.getCartList(user.getId()));
         }
 
         return "carts";

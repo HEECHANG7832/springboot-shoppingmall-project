@@ -1,6 +1,8 @@
 package com.example.springbootshoppingmallproject.domain;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
@@ -10,7 +12,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Product {
+@EntityListeners(value = {AuditingEntityListener.class})
+public class Product extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
