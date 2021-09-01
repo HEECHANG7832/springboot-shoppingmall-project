@@ -32,6 +32,9 @@ public class Product extends BaseTimeEntity {
     private Integer purchaseCount;
 
     @Column
+    private int rateAvg;
+
+    @Column
     private Integer limitCount;
 
     @Column
@@ -45,5 +48,14 @@ public class Product extends BaseTimeEntity {
 
     @Column
     private String largeCategory;
+
+    @Column
+    private Integer shippingCost;
+
+    @Column
+    private Integer shippingDueDate;
+
+    @Column
+    private Integer saleRate;
 
 }

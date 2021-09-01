@@ -33,3 +33,12 @@
 .product-grid8 .rating li.disable{color:#dcdcdc}
 
 @media only screen and (max-width:990px){.product-grid8{margin-bottom:30px}}
+
+
+.inner-star::before{color: #FF9600;}
+.outer-star {position: relative;display: inline-block;color: #CCCCCC;}
+.inner-star {position: absolute;left: 0;top: 0;width: 0%;overflow: hidden;white-space: nowrap;}
+.outer-star::before, .inner-star::before {content: '\f005 \f005 \f005 \f005 \f005';font-family: 'Font Awesome 5 free';font-weight: 900;}
+
+.rate-value{display: none}
+.RatingStar{padding:0;margin:-22px 0 0;list-style:none;text-align:right;display:block}

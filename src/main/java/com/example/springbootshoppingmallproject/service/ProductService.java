@@ -23,9 +23,11 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     //전체 상품 조회
-    public List<Product> getProductList(){
+    public Page<Product> getProductList(){
         log.info("getProductList() ");
-        return productRepository.findAll();
+
+        Pageable pageable = PageRequest.of(0, 8);
+        return productRepository.findAll(pageable);
     }
 
     public Page<Product> getPageProductListByLargeCategory(int page, String largeCategory){

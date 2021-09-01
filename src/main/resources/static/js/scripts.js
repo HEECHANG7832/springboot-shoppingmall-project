@@ -123,3 +123,31 @@ var main = {
 };
 
 main.init();
+
+
+ratings = document.querySelectorAll('div.RatingStar')
+totalRating = 5;
+
+ratings.forEach((el) => {
+    rate = el.querySelector('span.rate-value').innerText;
+
+    ratingPercentage = rate / totalRating * 100;
+    ratingRounded = Math.round(ratingPercentage / 10) * 10 + '%';
+
+    star = el.querySelector(`div.inner-star`);
+    star.style.width = ratingRounded;
+});
+
+//
+//
+// ratings = {RatingScore: 4.5}
+// totalRating = 5;
+// table = document.querySelector('.RatingStar');
+// function rateIt() {
+//     for (rating in ratings) {
+//         ratingPercentage = ratings[rating] / totalRating * 100;
+//         ratingRounded = Math.round(ratingPercentage / 10) * 10 + '%';
+//         star = table.querySelector(`.${rating} .inner-star`);
+//         star.style.width = ratingRounded;
+//     }
+// }rateIt()
