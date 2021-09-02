@@ -2,12 +2,14 @@ package com.example.springbootshoppingmallproject.controller;
 
 import com.example.springbootshoppingmallproject.config.auth.LoginUser;
 import com.example.springbootshoppingmallproject.config.auth.dto.SessionUser;
+import com.example.springbootshoppingmallproject.domain.Product;
 import com.example.springbootshoppingmallproject.dto.ProductRequestDto;
 import com.example.springbootshoppingmallproject.service.CartService;
 import com.example.springbootshoppingmallproject.service.ProductService;
 import com.example.springbootshoppingmallproject.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,7 +60,10 @@ public class HomeController {
     public String ProductList(Model model, @PathVariable int page, @LoginUser SessionUser user){
         log.info("link /productlist");
 
-        model.addAttribute("products", productService.getPageProductListByLargeCategory(page, null));
+        Page<Product> productPages = productService.getPageProductListByLargeCategory(page, null);
+        model.addAttribute("products", productPages);
+        model.addAttribute("pageCount", productPages.getTotalPages());
+        model.addAttribute("currentPage", productPages.getNumber());
 
         if (user != null) {
             model.addAttribute("user", user);

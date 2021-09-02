@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @ToString
@@ -16,6 +18,7 @@ public class ReviewResponseDto {
     private String title;
     private int rate;
     private String content;
+    private LocalDateTime createdDate;
 
     public ReviewResponseDto(Review entity){
         this.userId = entity.getUser().getId();
@@ -23,5 +26,6 @@ public class ReviewResponseDto {
         this.title = entity.getTitle();
         this.rate = entity.getRate();
         this.content = entity.getContent();
+        this.createdDate = entity.getCreatedDate();
     }
 }
