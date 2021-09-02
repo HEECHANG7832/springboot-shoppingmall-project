@@ -2,7 +2,7 @@ version: 0.0 #CodeDeploy 버전
 os: linux
 files:
   - source:  / #전체파일이 이동대상
-    destination: /home/ec2-user/shoppingApp/step1/zip/ #지정된 파일이 받아지는 위치 여기서 실행
+    destination: /home/ec2-user/shoppingApp/step1/ #지정된 파일이 받아지는 위치 여기서 실행
     overwrite: yes
 
 permissions:
