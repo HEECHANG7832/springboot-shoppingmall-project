@@ -27,12 +27,12 @@ public class ReviewRestController {
 
     //리뷰 작성하기
     @PostMapping("/products/{productid}/reviews")
-    public ResponseEntity<?> addReview( @LoginUser SessionUser user,
+    public Long addReview( @LoginUser SessionUser user,
                                         @PathVariable("productid") Long productId,
                                         @RequestBody ReviewRequestDto reviewRequestDto){
         reviewRequestDto.setProductId(productId);
         reviewRequestDto.setUserId(user.getId());
-        return ResponseEntity.ok().body(reviewService.addReview(reviewRequestDto));
+        return reviewService.addReview(reviewRequestDto);
     }
 
     //리뷰 수정하기

@@ -32,7 +32,7 @@ public class CartService {
         return cartRepository.findAllByUserId(userId).stream().map(CartResponseDto::new).collect(Collectors.toList());
     }
 
-    public void addCart(CartRequestDto cartRequestDto) {
+    public Long addCart(CartRequestDto cartRequestDto) {
 
         User user = userRepository.findById(cartRequestDto.getUserId()).orElseThrow(()-> new RuntimeException("존재하지 않는 유저입니다."));
 
@@ -46,10 +46,10 @@ public class CartService {
 //        if (product.getLimitCount() < cartRequestDto.getProductCount())
 //            throw new ProductLimitCountException("재고가 없습니다.");
 
-        cartRepository.save(Cart.builder()
+        return cartRepository.save(Cart.builder()
                             .user(user)
                             .product(product)
                             .productCount(cartRequestDto.getProductCount())
-                            .build());
+                            .build()).getId();
     }
 }

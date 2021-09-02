@@ -33,9 +33,8 @@ public class CartRestController {
     // 카트 추가
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping("/carts")
-    public ResponseEntity<?> addCart(@RequestBody CartRequestDto cartRequestDto) {
-        cartService.addCart(cartRequestDto);
-        return ResponseEntity.ok().body("장바구니에 추가되었습니다.");
+    public Long addCart(@RequestBody CartRequestDto cartRequestDto) {
+        return cartService.addCart(cartRequestDto);
     }
 
     // 카트 삭제

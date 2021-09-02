@@ -34,7 +34,7 @@ public class ReviewService {
         return reviews.stream().map(ReviewResponseDto::new).collect(Collectors.toList());
     }
 
-    public String addReview(ReviewRequestDto reviewRequestDto) {
+    public Long addReview(ReviewRequestDto reviewRequestDto) {
 
         User user = userRepository.getById(reviewRequestDto.getUserId());
         Product product = productRepository.getById(reviewRequestDto.getProductId());
@@ -47,9 +47,7 @@ public class ReviewService {
                 .product(product)
                 .build();
 
-        reviewRepository.save(review);
-
-        return "review 작성 성공";
+        return reviewRepository.save(review).getId();
     }
 
     public String updateReview(Long reviewId, ReviewRequestDto reviewRequestDto) {

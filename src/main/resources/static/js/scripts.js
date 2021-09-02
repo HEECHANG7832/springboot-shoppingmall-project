@@ -32,36 +32,45 @@ var main = {
 
         $.ajax({
             type: 'POST',
-            url: '/api/v1/products/'+ $('#product_id').val() + '/reviews',
+            url: '/api/v1/products/'+ $('#product_id')[0].innerHTML + '/reviews',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
             alert('글이 등록되었습니다.');
-            window.location.href = '/product/'+ $('#product_id').val();
+            window.location.href = '/product/'+ $('#product_id')[0].innerHTML;
         }).fail(function (error) {
-            alert(JSON.stringify(error));
+            //alert(JSON.stringify(error));
+            alert('로그인이 필요한 서비스입니다.');
         });
     },
     addCart : function () {
-        var data = {
-            userId: $('#user_id').val(),
-            productId: $('#product_id').val(),
-            productCount: $('#product_count').val(),
-        };
 
-        $.ajax({
-            type: 'POST',
-            url: '/api/v1/carts',
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8',
-            data: JSON.stringify(data)
-        }).done(function() {
-            alert('되었습니다.');
-            window.location.href = '/';
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        });
+        user = $('#user_id')[0];
+
+        if(user != undefined) {
+            var data = {
+                userId: $('#user_id')[0].innerHTML*1,
+                productId: $('#product_id')[0].innerHTML*1,
+                productCount: $('#product_count').val(),
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/carts',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function () {
+                alert('장바구니에 등록 되었습니다.');
+                window.location.href = '/product/'+ $('#product_id')[0].innerHTML;;
+            }).fail(function (error) {
+                //alert(JSON.stringify(error));
+                alert('로그인이 필요한 서비스입니다..');
+            });
+        }else{
+            alert('로그인이 필요한 서비스입니다.');
+        }
     },
     save : function () {
         var data = {

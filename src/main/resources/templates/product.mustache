@@ -6,7 +6,7 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6"><img class="card-img mb-5 mb-md-0" src="{{product.titleImg}}" alt="..." /></div>
-                    <div class="col-md-6">
+                    <span class="col-md-6">
                         <div class="small mb-1">SKU: BST-498</div>
                         <h1 class="display-5 fw-bolder">{{product.productName}}</h1>
                         <div class="fs-5 mb-5">
@@ -14,11 +14,11 @@
                             <span>${{product.price}} million</span>
                         </div>
                         <p class="lead">{{product.description}}</p>
-                        <div class="d-flex">
+                        <span class="d-flex">
 
-                            <input class="form-control text-center me-3" id="product_id" type="num" value="{{product.id}}" style="max-width: 3rem" />
+                            <span class="invisible" id="product_id">{{product.id}}</span>
                             {{#user}}
-                            <input class="form-control text-center me-3" id="user_id" type="num" value="{{user.id}}" style="max-width: 3rem" />
+                                <span class="invisible" id="user_id">{{user.id}}</span>
                             {{/user}}
                             <input class="form-control text-center me-3" id="product_count" type="num" value="1" style="max-width: 3rem" />
                             <button class="btn btn-outline-dark flex-shrink-0" type="button" id="btn-addCart">
