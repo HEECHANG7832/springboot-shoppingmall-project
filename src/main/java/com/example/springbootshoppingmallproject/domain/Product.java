@@ -32,7 +32,7 @@ public class Product extends BaseTimeEntity {
     private Integer purchaseCount;
 
     @Column
-    private int rateAvg;
+    private Integer rateAvg;
 
     @Column
     private Integer limitCount;
