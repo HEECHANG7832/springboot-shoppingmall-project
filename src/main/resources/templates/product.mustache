@@ -132,20 +132,21 @@
                                     <li><a href="" class="fa fa-shopping-bag"></a></li>
                                     <li><a href="" class="fa fa-shopping-cart"></a></li>
                                 </ul>
-                                <span class="product-discount-label">-20%</span>
+                                <span class="product-discount-label">-{{saleRate}}%</span>
                             </div>
                             <div class="product-content">
                                 <div class="price">$ {{price}}
                                     <!-- <span>$ {{price}}</span> -->
                                 </div>
-                                <ul class="rating">
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star disable"></li>
-                                    <li class="fa fa-star disable"></li>
-                                </ul>
-                                <span class="product-shipping">Free Shipping</span>
+                                <div class='RatingStar'>
+                                    <div class='RatingScore'>
+                                        <span class="rate-value" id="rate">{{rateAvg}}</span>
+                                        <div class='outer-star'>
+                                            <div class='inner-star'></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="product-shipping"> + ${{shippingCost}} Shipping</span>
                                 <h3 class="title"><a href="#">{{productName}}</a></h3>
                             </div>
                         </div>
