@@ -42,6 +42,12 @@ public class ProductService {
         return productRepository.findByLargeCategory(largeCategory, pageable);
     }
 
+    public Page<Product> getProductListByProductName(String productName) {
+        log.info("getProductListByProductName" + productName);
+        Pageable pageable = PageRequest.of(0, 8);
+        return productRepository.findByProductNameContains(productName, pageable);
+    }
+
     public List<ProductResponseDto.MainProductResponseDto> getProductListSortByPurchaseCountDesc(){
         log.info("getProductListSortByPurchaseCount()");
 

@@ -1,12 +1,15 @@
 package com.example.springbootshoppingmallproject.controller;
 
+import com.example.springbootshoppingmallproject.domain.Product;
 import com.example.springbootshoppingmallproject.dto.ProductRequestDto;
 import com.example.springbootshoppingmallproject.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,17 +29,24 @@ public class ProductRestController {
         return ResponseEntity.ok().body(productService.getProductList());
     }
 
+    //상품 이름 조회
+    @GetMapping("/products/{productname}")
+    public Page<Product> getProductListByProductName(@PathVariable(value = "productname") String productName){
+        log.info("link /products/{productname}");
+        return productService.getProductListByProductName(productName);
+    }
+
     //상품 등록
     @PostMapping("/products")
     public ResponseEntity<?> addProduct(@RequestBody ProductRequestDto productRequestDto) {
         return ResponseEntity.ok().body(productService.addProduct(productRequestDto));
     }
 
-    //상품 상세 조회
-    @GetMapping("/products/{id}")
-    public ResponseEntity<?> getProduct(@PathVariable Long id){
-        return ResponseEntity.ok().body(productService.getProduct(id));
-    }
+//    //상품 상세 조회
+//    @GetMapping("/products/{id}")
+//    public ResponseEntity<?> getProduct(@PathVariable Long id){
+//        return ResponseEntity.ok().body(productService.getProduct(id));
+//    }
 
     //상품 Top8 랭킹 조회
     @GetMapping("/top8products")
