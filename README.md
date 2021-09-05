@@ -8,21 +8,30 @@
 
 - [ ] API 디자인, Page 설계하기
 - [x] Product 전체 가져오기
-- [ ] 페이징 구현, 카테고리화 구현
+- [x] 페이징 구현, 카테고리화 구현
 - [ ] Seller의 Product 추가 기능
 - [x] Cart에 담기 구현
-- [ ] User별 Cart 분리
+- [x] User별 Cart 분리
 - [x] 초기 프로젝트 생성
 - [ ] DTO Validator 추가하기
 - [ ] API별 권한 부여, User, Guest, Seller
 - [ ] 예외 처리
 - [ ] 반복되는 코드 AOP처리
 - [ ] 테스트 작성하기
+- [x] Product 별점, 할인, 배송일, 항목 추가
+- [x] Review 기능 추가 User, Product, Review 관계
 - [x] Spring Security Ouath2 Google, Naver를 사용한 로그인 구현
 - [x] AWS 서버에 올리기, Maria DB연동
-- [ ] CI / CD 작업
+- [x] CI / CD 작업
+- [x] 아키텍처 구성 정리
 - [ ] JPA, Security 완벽 분석
 - [ ] ajax 스터디
+- [x] 프론트 디자인 detail 수정
+- [x] 페이징 인덱스 동적 처리
+- [x] cart 계산 기능 추가(프론트) 후 결제 로직
+- [ ] Home, About, footer 채우기
+
+id 를 body에 ? path에?
 
 ### 📋기술 스텍
 
@@ -73,7 +82,7 @@ Database
 
 ### 📋기능 리스트
 
-- User Login, Admin Login
+- User Login, Admin Login(수정중)
 - User는 카트에 물건 추가, 삭제 + 수량조절 + ~~주문~~
 - Admin은 물건 목록 추가, 삭제
 - 물품 리스트 카테고리별 검색, 페이징
@@ -110,6 +119,10 @@ get /me/{id}
 
 put /me/{id}
 
+### 📋 서버 아키텍처
+
+![example](https://user-images.githubusercontent.com/22570262/132129166-2cae802a-cdc2-4975-a035-ef9e73fd0af1.png)
+
 **DB 설계**
 
 Cart - User 1대 N 관계
@@ -123,14 +136,14 @@ Cart - Product 1대 N 관계
 - password
 - Cart
 - **Admin or not?**
-- 
+-
 
 **Cart**
 
 - ProductId FK
 - UserId  FK
 - Count
-- 
+-
 
 **Product**
 
