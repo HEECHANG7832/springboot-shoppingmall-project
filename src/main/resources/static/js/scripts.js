@@ -2,10 +2,6 @@ var main = {
     init : function () {
         var _this = this;
 
-        $('#btn-searchProduct').on('click', function () {
-            _this.searchProduct();
-        });
-
         $('#btn-addCart').on('click', function () {
             _this.addCart();
         });
@@ -26,25 +22,6 @@ var main = {
             _this.delete();
         });
 
-    },
-    searchProduct : function () {
-
-        $.ajax({
-            type: 'GET',
-            url: '/api/v1/products/'+  $('#search').val(),
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8',
-        }).done(function(products) {
-            alert('조회 성공');
-            alert(products);
-            //productContainer = document.querySelector('#product-list-container')
-            //productContainer.innerHTML +=
-
-
-        }).fail(function (error) {
-            //alert(JSON.stringify(error));
-            alert('해당 상품은 존재하지 않습니다');
-        });
     },
     saveReview : function () {
         var data = {
