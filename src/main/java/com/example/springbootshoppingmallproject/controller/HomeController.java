@@ -57,11 +57,13 @@ public class HomeController {
 
     //전체 상품 상세보기
     @GetMapping("/productlist/{page}")
-    public String ProductList(Model model, @PathVariable int page, @LoginUser SessionUser user){
+    public String ProductList(Model model, @PathVariable int page, @RequestParam String productName, @LoginUser SessionUser user){
         log.info("link /productlist");
 
-        Page<Product> productPages = productService.getPageProductListByLargeCategory(page, null);
+        Page<Product> productPages = productService.getProductListByProductName(page, productName);
+
         model.addAttribute("products", productPages);
+
         model.addAttribute("pageCount", productPages.getTotalPages());
         model.addAttribute("currentPage", productPages.getNumber());
 

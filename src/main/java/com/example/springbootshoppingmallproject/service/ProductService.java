@@ -42,9 +42,14 @@ public class ProductService {
         return productRepository.findByLargeCategory(largeCategory, pageable);
     }
 
-    public Page<Product> getProductListByProductName(String productName) {
+    public Page<Product> getProductListByProductName(int page, String productName) {
         log.info("getProductListByProductName" + productName);
-        Pageable pageable = PageRequest.of(0, 8);
+        Pageable pageable = PageRequest.of(page, 8);
+
+        if(productName == null){
+            return productRepository.findAll(pageable);
+        }
+
         return productRepository.findByProductNameContains(productName, pageable);
     }
 
