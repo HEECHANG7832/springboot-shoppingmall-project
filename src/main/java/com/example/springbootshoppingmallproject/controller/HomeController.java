@@ -27,7 +27,7 @@ public class HomeController {
     //메인 화면 상품 리스트
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user){
-        log.info("link /");
+        log.info("HomeController /");
 
         model.addAttribute("products", productService.getProductList());
         model.addAttribute("rankproducts", productService.getProductListSortByPurchaseCountDesc());
@@ -42,7 +42,7 @@ public class HomeController {
     //개별 상품 상세보기
     @GetMapping("/product/{id}")
     public String product(Model model, @PathVariable Long id, @LoginUser SessionUser user){
-        log.info("link /product/{id}");
+        log.info("HomeController /product/{id}");
 
         model.addAttribute("product", productService.getProduct(id));
         model.addAttribute("relatedproducts", productService.getRelatedProductList(id));
@@ -57,8 +57,9 @@ public class HomeController {
 
     //전체 상품 상세보기
     @GetMapping("/productlist/{page}")
-    public String ProductList(Model model, @PathVariable int page, @RequestParam String productName, @LoginUser SessionUser user){
-        log.info("link /productlist");
+    public String ProductList(Model model, @PathVariable int page, @RequestParam(required = false, name = "search") String productName, @LoginUser SessionUser user){
+
+        log.info("HomeController  /productlist");
 
         Page<Product> productPages = productService.getProductListByProductName(page, productName);
 
@@ -80,7 +81,7 @@ public class HomeController {
     //@GetMapping("/users/{userId}/carts/{page}")
     @GetMapping("/carts")
     public String getCartList(Model model, @LoginUser SessionUser user) {
-        log.info("link /carts");
+        log.info("HomeController  /carts");
 
         if (user != null) {
             model.addAttribute("user", user);

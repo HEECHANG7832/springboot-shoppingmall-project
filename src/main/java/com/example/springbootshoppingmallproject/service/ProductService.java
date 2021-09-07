@@ -43,8 +43,10 @@ public class ProductService {
     }
 
     public Page<Product> getProductListByProductName(int page, String productName) {
-        log.info("getProductListByProductName" + productName);
-        Pageable pageable = PageRequest.of(page, 8);
+        log.info("[ProductService] getProductListByProductName : " + productName);
+
+        int realPage = page - 1;
+        Pageable pageable = PageRequest.of(realPage, 8);
 
         if(productName == null){
             return productRepository.findAll(pageable);
