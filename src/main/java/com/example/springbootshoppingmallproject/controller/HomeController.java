@@ -43,7 +43,6 @@ public class HomeController {
     @GetMapping("/product/{id}")
     public String product(Model model, @PathVariable Long id, @LoginUser SessionUser user){
         log.info("HomeController /product/{id}");
-        log.info("user : " + user.toString());
 
         model.addAttribute("product", productService.getProduct(id));
         model.addAttribute("relatedproducts", productService.getRelatedProductList(id));
