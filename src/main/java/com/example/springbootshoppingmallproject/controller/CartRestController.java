@@ -1,6 +1,9 @@
 package com.example.springbootshoppingmallproject.controller;
 
+import com.example.springbootshoppingmallproject.config.auth.LoginUser;
+import com.example.springbootshoppingmallproject.config.auth.dto.SessionUser;
 import com.example.springbootshoppingmallproject.dto.CartRequestDto;
+import com.example.springbootshoppingmallproject.dto.CartResponseDto;
 import com.example.springbootshoppingmallproject.service.CartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -25,10 +29,10 @@ public class CartRestController {
 
     // 카트 조회
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-//    @GetMapping("/users/{userId}/carts")
-//    public ResponseEntity<?> getCartList(@PathVariable("userId") Long userId) {
-//        return ResponseEntity.ok().body(cartService.getCartList(userId));
-//    }
+    @GetMapping("/users/{userid}/carts")
+    public List<CartResponseDto> getCartList(@PathVariable("userid") Long userId) {
+        return cartService.getCartList(userId);
+    }
 
     // 카트 추가
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
@@ -40,10 +44,8 @@ public class CartRestController {
     // 카트 삭제
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @DeleteMapping("/carts/{id}")
-    public ResponseEntity<?> removeCart(@PathVariable Long id) {
-
-        //cartService.removeCart(id);
-
-        return ResponseEntity.ok().body("삭제 되었습니다.");
+    public String removeCart(@PathVariable Long id) {
+        cartService.removeCart(id);
+        return "{ \"message\" : 삭제 성공}";
     }
 }

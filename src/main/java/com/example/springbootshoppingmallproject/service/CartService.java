@@ -1,6 +1,7 @@
 package com.example.springbootshoppingmallproject.service;
 
 
+import com.example.springbootshoppingmallproject.config.auth.dto.SessionUser;
 import com.example.springbootshoppingmallproject.domain.Cart;
 import com.example.springbootshoppingmallproject.domain.CartRepository;
 import com.example.springbootshoppingmallproject.domain.Product;
@@ -51,5 +52,9 @@ public class CartService {
                             .product(product)
                             .productCount(cartRequestDto.getProductCount())
                             .build()).getId();
+    }
+
+    public void removeCart(Long id) {
+        cartRepository.deleteById(id);
     }
 }

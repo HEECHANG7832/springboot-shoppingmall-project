@@ -13,10 +13,12 @@ import javax.validation.constraints.Min;
 @ToString
 public class CartResponseDto {
 
+    private Long cartId;
     private Product product;
     private Integer productCount;
 
     public CartResponseDto(Cart entity){
+        this.cartId = entity.getId();
         this.product = entity.getProduct();
         this.productCount = entity.getProductCount();
     }
