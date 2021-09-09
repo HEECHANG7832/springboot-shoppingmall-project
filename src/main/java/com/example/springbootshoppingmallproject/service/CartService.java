@@ -54,7 +54,18 @@ public class CartService {
                             .build()).getId();
     }
 
+    public Long updateCart(CartRequestDto cartRequestDto) {
+
+        Optional<Cart> cartOpt = cartRepository.findById(cartRequestDto.getCartId());
+        Cart cart = cartOpt.get();
+        cart.setProductCount(cartRequestDto.getProductCount());
+
+        return cartRepository.save(cart).getId();
+    }
+
     public void removeCart(Long id) {
         cartRepository.deleteById(id);
     }
+
+
 }

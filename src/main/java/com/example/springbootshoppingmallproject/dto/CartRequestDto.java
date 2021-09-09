@@ -11,6 +11,7 @@ import java.util.UUID;
 @Setter
 @ToString
 public class CartRequestDto {
+    private Long cartId;
     private Long userId;
     private Long productId;
     private Integer productCount;

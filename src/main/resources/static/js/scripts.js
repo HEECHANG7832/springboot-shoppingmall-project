@@ -6,10 +6,6 @@ var main = {
             _this.addCart();
         });
 
-        $('#btn-deleteCart').on('click', function () {
-            _this.deleteCart(this);
-        });
-
         $('#btn-saveReview').on('click', function () {
             _this.saveReview();
         });
@@ -76,9 +72,29 @@ var main = {
             alert('로그인이 필요한 서비스입니다.');
         }
     },
-    deleteCart : function (T) {
-        var cartId = T.querySelector("#cart_id").innerHTML;
-        console.log(cartId);
+    updateCart : function (cartId) {
+        var data = {
+            cartId,
+            productId: 0, //null
+            productCount: $('#product_count_' + cartId).val(),
+        };
+
+        $.ajax({
+            type: 'PUT',
+            url: '/api/v1/carts/',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function () {
+            alert('수정 성공');
+            window.location.href = '/carts';
+        }).fail(function (error) {
+            //alert(JSON.stringify(error));
+            alert('수정 실패');
+        });
+
+    },
+    deleteCart : function (cartId) {
 
         $.ajax({
             type: 'DELETE',

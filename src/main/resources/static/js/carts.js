@@ -3,7 +3,7 @@ var sum = 0
 carts.forEach((el) => {
     price = el.querySelector("#price").innerHTML;
 
-    productCount = el.querySelector("#product_count").value;
+    productCount = el.querySelector('input[name="product_count"]').value;
 
     sum += (price.substr(1, price.length) * productCount);
 });

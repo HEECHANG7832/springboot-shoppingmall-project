@@ -41,6 +41,13 @@ public class CartRestController {
         return cartService.addCart(cartRequestDto);
     }
 
+    // 카트 변경
+    //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @PutMapping("/carts")
+    public Long updateCart(@RequestBody CartRequestDto cartRequestDto) {
+        return cartService.updateCart(cartRequestDto);
+    }
+
     // 카트 삭제
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @DeleteMapping("/carts/{id}")

@@ -28,16 +28,15 @@
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
                     <div class="form-group mb-2">
                         <label for="quantity1">Quantity</label>
-                        <input class="form-control form-control-sm" type="number" id="product_count" value="{{productCount}}">
+                        <input class="form-control form-control-sm" type="number" name="product_count" id="product_count_{{cartId}}" value="{{productCount}}">
                     </div>
-                    <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="button">
+                    <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="button" onclick="main.updateCart({{cartId}});">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw mr-1">
                             <polyline points="23 4 23 10 17 10"></polyline>
                             <polyline points="1 20 1 14 7 14"></polyline>
                             <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
                         </svg>Update cart</button>
-                    <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button" id="btn-deleteCart">
-                        <span class="invisible" id="cart_id">{{cartId}}</span>
+                    <button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button" onclick="main.deleteCart({{cartId}});">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 mr-1">
                             <polyline points="3 6 5 6 21 6"></polyline>
                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
