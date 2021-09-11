@@ -33,7 +33,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' //소셜 로그인 구현시 필요
     implementation 'org.springframework.session:spring-session-jdbc' //세션 저장소를 DB로 구현
 
-    implementation 'org.mariadb.jdbc:mariadb-java-client' //mariaDB
+    implementation 'org.mariadb.jdbc:mariadb-java-client'
+    implementation 'junit:junit:4.13.1'//mariaDB
 
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
