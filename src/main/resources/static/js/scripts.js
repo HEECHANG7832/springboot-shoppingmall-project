@@ -135,6 +135,9 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
+    updateCart : function (productId) {
+
+    },
     deleteProduct : function (productId) {
 
         $.ajax({
