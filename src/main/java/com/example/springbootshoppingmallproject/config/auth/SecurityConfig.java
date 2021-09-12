@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     //권한 관리 대상을 지정
                     .antMatchers("/", "/product", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile", "/assets/**").permitAll()
                     .antMatchers("/api/v1/**").hasRole(Role.USER.name())
-                    .antMatchers("/product/save").hasRole(Role.SELLER.name())
+                    .antMatchers("/products/admin", "/product/save").hasRole(Role.SELLER.name())
                     //설정 외 요청들
                     .anyRequest().permitAll()
                 .and()

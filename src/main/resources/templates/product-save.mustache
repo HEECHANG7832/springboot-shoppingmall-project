@@ -3,45 +3,87 @@
 <section class="py-5">
     <div class="col-md-12">
         <div class="col-md-4">
-            <form>
-
-                <div class="form-group">
-                    <label for="title">상품명</label>
-                    <input type="text" class="form-control" id="product-name" placeholder="상품명을 입력하세요">
-                </div>
-                <div class="form-group">
-                    <label for="author"> 설명 </label>
-                    <textarea class="form-control" id="description" placeholder="설명을 입력하세요"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="content"> 가격 </label>
-                    <input type="text" class="form-control" id="price" placeholder="가격을 입력하세요">
-                </div>
-                <div class="form-group">
-                    <label for="content"> 수량 </label>
-                    <input type="text" class="form-control" id="total-Count" placeholder="총 수량을 입력하세요">
-                </div>
-                <div class="form-group">
-                    <label for="content"> 타이틀 이미지 </label>
-                    <input type="text" class="form-control" id="title-img" placeholder="타이틀 이미지 주소를 입력하세요">
-                </div>
-                <div class="form-group">
-                    <label for="content"> 카테고리 </label>
-                    <input type="text" class="form-control" id="large-category" placeholder="카테고리를 입력하세요">
-                </div>
-                <div class="form-group">
-                    <label for="content"> 운송 비용 </label>
-                    <input type="text" class="form-control" id="shipping-cost" placeholder="운송 비용을 입력하세요">
-                </div>
-                <div class="form-group">
-                    <label for="content"> 할인 율 </label>
-                    <input type="text" class="form-control" id="sale-rate" placeholder="할인 율을 입력하세요">
-                </div>
-
-
-            </form>
-            <a href="/" role="button" class="btn btn-secondary">취소</a>
-            <button type="button" class="btn btn-primary" id="btn-product-save">등록</button>
+            {{#product}}
+                <form>
+                    <div class="form-group">
+                        <label for="title">ID
+                            <label id="product-id">{{id}}</label>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">상품명</label>
+                        <input type="text" class="form-control" id="product-name" placeholder="상품명을 입력하세요" value="{{productName}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="author"> 설명 </label>
+                        <textarea class="form-control" id="description" placeholder="설명을 입력하세요">{{description}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 가격 </label>
+                        <input type="text" class="form-control" id="price" placeholder="가격을 입력하세요" value="{{price}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 수량 </label>
+                        <input type="text" class="form-control" id="total-Count" placeholder="총 수량을 입력하세요" value="{{totalCount}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 타이틀 이미지 </label>
+                        <input type="text" class="form-control" id="title-img" placeholder="타이틀 이미지 주소를 입력하세요" value="{{titleImg}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 카테고리 </label>
+                        <input type="text" class="form-control" id="large-category" placeholder="카테고리를 입력하세요" value="{{largeCategory}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 운송 비용 </label>
+                        <input type="text" class="form-control" id="shipping-cost" placeholder="운송 비용을 입력하세요" value="{{shippingCost}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 할인 율 </label>
+                        <input type="text" class="form-control" id="sale-rate" placeholder="할인 율을 입력하세요" value="{{saleRate}}">
+                    </div>
+                </form>
+                <a href="/products/admin" role="button" class="btn btn-secondary">취소</a>
+                <button type="button" class="btn btn-primary" id="btn-product-update">수정</button>
+            {{/product}}
+            {{^product}}
+                <form>
+                    <div class="form-group">
+                        <label for="title">상품명</label>
+                        <input type="text" class="form-control" id="product-name" placeholder="상품명을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="author"> 설명 </label>
+                        <textarea class="form-control" id="description" placeholder="설명을 입력하세요"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 가격 </label>
+                        <input type="text" class="form-control" id="price" placeholder="가격을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 수량 </label>
+                        <input type="text" class="form-control" id="total-Count" placeholder="총 수량을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 타이틀 이미지 </label>
+                        <input type="text" class="form-control" id="title-img" placeholder="타이틀 이미지 주소를 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 카테고리 </label>
+                        <input type="text" class="form-control" id="large-category" placeholder="카테고리를 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 운송 비용 </label>
+                        <input type="text" class="form-control" id="shipping-cost" placeholder="운송 비용을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="content"> 할인 율 </label>
+                        <input type="text" class="form-control" id="sale-rate" placeholder="할인 율을 입력하세요">
+                    </div>
+                </form>
+                <a href="/products/admin" role="button" class="btn btn-secondary">취소</a>
+                <button type="button" class="btn btn-primary" id="btn-product-save">등록</button>
+            {{/product}}
         </div>
     </div>
 </section>

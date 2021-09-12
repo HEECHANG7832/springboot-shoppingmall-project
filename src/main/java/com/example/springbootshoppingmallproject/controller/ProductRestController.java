@@ -53,8 +53,8 @@ public class ProductRestController {
     //상품 수정
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/products/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody @Valid ProductRequestDto productRequestDto) {
-        return ResponseEntity.ok().body(productService.updateProduct(id, productRequestDto));
+    public Long updateProduct(@PathVariable Long id, @RequestBody ProductRequestDto productRequestDto) {
+        return productService.updateProduct(id, productRequestDto);
     }
 
     //상품 삭제

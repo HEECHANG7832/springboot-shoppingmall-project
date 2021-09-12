@@ -124,15 +124,7 @@ public class ProductService {
 
         Product product = productOpt.get();
 
-        return ProductResponseDto.builder()
-                .id(product.getId())
-                .productName(product.getProductName())
-                .description((product.getDescription()))
-                .price(product.getPrice())
-                .titleImg(product.getTitleImg())
-                .largeCategory(product.getLargeCategory())
-                .totalCount(product.getTotalCount())
-                .build();
+        return new ProductResponseDto(product);
     }
 
     public Page<Product> getRelatedProductList(Long id){
@@ -146,27 +138,26 @@ public class ProductService {
     }
 
     // 상품 정보 수정
-    public String updateProduct(Long id, ProductRequestDto productRequestDto) {
+    public Long updateProduct(Long id, ProductRequestDto productRequestDto) {
         Optional<Product> productOpt = productRepository.findById(id);
 
-        if (!productOpt.isPresent()){
-            //throw new NotExistProductException("존재하지 않는 상품입니다.");
-            return "존재하지 않는 상품입니다";
-        }
+//        if (!productOpt.isPresent()){
+//            throw new NotExistProductException("존재하지 않는 상품입니다.");
+//        }
 
         Product product = productOpt.get();
 
         product.setProductName(productRequestDto.getProductName());
         product.setDescription(productRequestDto.getDescription());
         product.setPrice(productRequestDto.getPrice());
+        product.setTotalCount(productRequestDto.getTotalCount());
         product.setProductStatus(productRequestDto.getProductStatus());
         product.setTitleImg(productRequestDto.getTitleImg());
-        product.setTotalCount(productRequestDto.getTotalCount());
         product.setLargeCategory(productRequestDto.getLargeCategory());
+        product.setShippingCost(productRequestDto.getShippingCost());
+        product.setSaleRate(productRequestDto.getSaleRate());
 
-        productRepository.save(product);
-
-        return "상품 정보 수정이 완료되었습니다.";
+        return productRepository.save(product).getId();
     }
 
     //상품 삭제

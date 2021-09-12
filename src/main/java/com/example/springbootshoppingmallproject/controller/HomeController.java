@@ -81,13 +81,36 @@ public class HomeController {
 
         model.addAttribute("products", productService.getProductListByUserId(user.getId()));
 
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
         return "product-admin";
     }
 
     //상품 등록 화면
     @GetMapping("/product/save")
-    public String ProductSave(@LoginUser SessionUser user){
+    public String ProductSave(Model model, @LoginUser SessionUser user){
         log.info("/product/save");
+
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
+        return "product-save";
+    }
+
+    //상품 수정 화면
+    @GetMapping("/product/update/{productid}")
+    public String ProductUpdate(Model model, @PathVariable(name="productid")Long productId, @LoginUser SessionUser user){
+        log.info("/product/update");
+
+        model.addAttribute("product", productService.getProduct(productId));
+
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
         return "product-save";
     }
 
