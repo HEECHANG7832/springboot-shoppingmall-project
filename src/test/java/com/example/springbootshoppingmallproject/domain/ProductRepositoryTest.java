@@ -17,6 +17,6 @@ class ProductRepositoryTest {
     private ProductRepository productRepository;
 
     @Test
-    void findByCategoryTest() { // create, read, update, delete
+    public void findByCategoryTest() { // create, read, update, delete
     }
 }
