@@ -3,6 +3,8 @@ package com.example.springbootshoppingmallproject.service;
 import com.example.springbootshoppingmallproject.common.CommonFunction;
 import com.example.springbootshoppingmallproject.domain.Product;
 import com.example.springbootshoppingmallproject.domain.ProductRepository;
+import com.example.springbootshoppingmallproject.domain.user.User;
+import com.example.springbootshoppingmallproject.domain.user.UserRepository;
 import com.example.springbootshoppingmallproject.dto.ProductRequestDto;
 import com.example.springbootshoppingmallproject.dto.ProductResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final UserRepository userRepository;
 
     //전체 상품 조회
     public Page<Product> getProductList(){
@@ -85,8 +88,11 @@ public class ProductService {
     }
 
     // 상품 추가
-    public Long addProduct(ProductRequestDto productRequestDto) {
+    public Long addProduct(ProductRequestDto productRequestDto, Long userId) {
         log.info(productRequestDto.toString());
+
+        User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("존재하지 않는 유저입니다."));
+
         return productRepository.save(Product.builder()
                 .productName(productRequestDto.getProductName())
                 .description((productRequestDto.getDescription()))
@@ -101,6 +107,7 @@ public class ProductService {
                 .shippingCost(productRequestDto.getShippingCost())
                 .shippingDueDate(productRequestDto.getShippingDueDate())
                 .saleRate(productRequestDto.getSaleRate())
+                .user(user)
                 .build()).getId();
     }
 

@@ -116,6 +116,7 @@ var main = {
             productName: $('#product-name').val(),
             description: $('#description').val(),
             price: $('#price').val(),
+            totalCount: $('#total-Count').val(),
             titleImg: $('#title-img').val(),
             largeCategory: $('#large-category').val(),
             shippingCost: $('#shipping-cost').val(),
@@ -130,12 +131,12 @@ var main = {
             data: JSON.stringify(data)
         }).done(function() {
             alert('상품이 이 등록되었습니다.');
-            window.location.href = '/';
+            window.location.href = '/products/admin';
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
     },
-    updateCart : function (productId) {
+    updateProduct : function (productId) {
 
     },
     deleteProduct : function (productId) {

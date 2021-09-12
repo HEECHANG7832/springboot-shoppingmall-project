@@ -1,5 +1,7 @@
 package com.example.springbootshoppingmallproject.controller;
 
+import com.example.springbootshoppingmallproject.config.auth.LoginUser;
+import com.example.springbootshoppingmallproject.config.auth.dto.SessionUser;
 import com.example.springbootshoppingmallproject.domain.Product;
 import com.example.springbootshoppingmallproject.dto.ProductRequestDto;
 import com.example.springbootshoppingmallproject.service.ProductService;
@@ -38,15 +40,9 @@ public class ProductRestController {
 
     //상품 등록
     @PostMapping("/products")
-    public Long addProduct(@RequestBody ProductRequestDto productRequestDto) {
-        return productService.addProduct(productRequestDto);
+    public Long addProduct(@RequestBody ProductRequestDto productRequestDto, @LoginUser SessionUser user) {
+        return productService.addProduct(productRequestDto, user.getId());
     }
-
-//    //상품 상세 조회
-//    @GetMapping("/products/{id}")
-//    public ResponseEntity<?> getProduct(@PathVariable Long id){
-//        return ResponseEntity.ok().body(productService.getProduct(id));
-//    }
 
     //상품 Top8 랭킹 조회
     @GetMapping("/top8products")
