@@ -1,5 +1,6 @@
 package com.example.springbootshoppingmallproject.domain;
 
+import com.example.springbootshoppingmallproject.domain.user.User;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -58,4 +59,7 @@ public class Product extends BaseTimeEntity {
     @Column
     private Integer saleRate;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

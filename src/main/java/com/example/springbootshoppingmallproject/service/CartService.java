@@ -63,7 +63,7 @@ public class CartService {
         return cartRepository.save(cart).getId();
     }
 
-    public void removeCart(Long id) {
+    public void deleteCart(Long id) {
         cartRepository.deleteById(id);
     }
 

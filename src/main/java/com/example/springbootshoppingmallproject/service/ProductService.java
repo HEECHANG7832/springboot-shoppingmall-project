@@ -1,5 +1,6 @@
 package com.example.springbootshoppingmallproject.service;
 
+import com.example.springbootshoppingmallproject.common.CommonFunction;
 import com.example.springbootshoppingmallproject.domain.Product;
 import com.example.springbootshoppingmallproject.domain.ProductRepository;
 import com.example.springbootshoppingmallproject.dto.ProductRequestDto;
@@ -24,14 +25,15 @@ public class ProductService {
 
     //전체 상품 조회
     public Page<Product> getProductList(){
-        log.info("getProductList() ");
+        log.info("getProductList()");
 
         Pageable pageable = PageRequest.of(0, 8);
         return productRepository.findAll(pageable);
     }
 
+    //LargeCategory 조회
     public Page<Product> getPageProductListByLargeCategory(int page, String largeCategory){
-        log.info("getPageProductListByLargeCategory() page : ", page, "largeCategory : ", largeCategory);
+        log.info("getPageProductListByLargeCategory(%d %s)", page, largeCategory);
 
         int realPage = page - 1;
         Pageable pageable = PageRequest.of(realPage, 8);
@@ -42,8 +44,9 @@ public class ProductService {
         return productRepository.findByLargeCategory(largeCategory, pageable);
     }
 
+    //상품 이름 조회
     public Page<Product> getProductListByProductName(int page, String productName) {
-        log.info("[ProductService] getProductListByProductName : " + productName);
+        log.info("getProductListByProductName(%d %s)", page, productName);
 
         int realPage = page - 1;
         Pageable pageable = PageRequest.of(realPage, 8);
@@ -55,6 +58,7 @@ public class ProductService {
         return productRepository.findByProductNameContains(productName, pageable);
     }
 
+    //상품 구매 순서별 조회
     public List<ProductResponseDto.MainProductResponseDto> getProductListSortByPurchaseCountDesc(){
         log.info("getProductListSortByPurchaseCount()");
 
@@ -69,6 +73,15 @@ public class ProductService {
         }
 
         return mainProductResponseDtoList;
+    }
+
+    //User에 해당하는 상품 조회
+    public List<ProductResponseDto> getProductListByUserId(Long userId) {
+        log.info("getProductListByUserId(%d)", userId);
+
+        List<Product> products = productRepository.findAllByUserId(userId);
+
+        return products.stream().map(ProductResponseDto::new).collect(Collectors.toList());
     }
 
     // 상품 추가
@@ -154,4 +167,6 @@ public class ProductService {
         productRepository.deleteById(id);
         return "상품 삭제 완료";
     }
+
+
 }

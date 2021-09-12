@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Builder
 public class ProductResponseDto {
 
@@ -19,8 +20,25 @@ public class ProductResponseDto {
     private Integer limitCount;
     private Integer totalCount;
     private Integer productStatus;
+    private Integer shippingCost;
+    private Integer saleRate;
     private String titleImg;
     private String largeCategory;
+
+    public ProductResponseDto(Product entity){
+        this.id = entity.getId();
+        this.productName = entity.getProductName();
+        this.description = entity.getDescription();
+        this.price = entity.getPrice();
+        this.purchaseCount = entity.getPurchaseCount();
+        this.limitCount = entity.getLimitCount();
+        this.totalCount = entity.getTotalCount();
+        this.productStatus = entity.getProductStatus();
+        this.shippingCost = entity.getShippingCost();
+        this.titleImg = entity.getTitleImg();
+        this.saleRate = entity.getSaleRate();
+        this.largeCategory = entity.getLargeCategory();
+    }
 
     @Getter
     @NoArgsConstructor

@@ -51,8 +51,8 @@ public class CartRestController {
     // 카트 삭제
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @DeleteMapping("/carts/{id}")
-    public String removeCart(@PathVariable Long id) {
-        cartService.removeCart(id);
+    public String deleteCart(@PathVariable Long id) {
+        cartService.deleteCart(id);
         return "{ \"message\" : 삭제 성공}";
     }
 }

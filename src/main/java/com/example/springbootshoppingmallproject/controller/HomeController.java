@@ -27,7 +27,7 @@ public class HomeController {
     //메인 화면 상품 리스트
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user){
-        log.info("HomeController /");
+        log.info("/");
 
         model.addAttribute("products", productService.getProductList());
         model.addAttribute("rankproducts", productService.getProductListSortByPurchaseCountDesc());
@@ -42,7 +42,7 @@ public class HomeController {
     //개별 상품 상세보기
     @GetMapping("/product/{id}")
     public String product(Model model, @PathVariable Long id, @LoginUser SessionUser user){
-        log.info("HomeController /product/{id}");
+        log.info("/product/{id}");
 
         model.addAttribute("product", productService.getProduct(id));
         model.addAttribute("relatedproducts", productService.getRelatedProductList(id));
@@ -59,12 +59,11 @@ public class HomeController {
     @GetMapping("/productlist/{page}")
     public String ProductList(Model model, @PathVariable int page, @RequestParam(required = false, name = "search") String productName, @LoginUser SessionUser user){
 
-        log.info("HomeController  /productlist");
+        log.info("/productlist");
 
         Page<Product> productPages = productService.getProductListByProductName(page, productName);
 
         model.addAttribute("products", productPages);
-
         model.addAttribute("pageCount", productPages.getTotalPages());
         model.addAttribute("currentPage", productPages.getNumber());
 
@@ -75,12 +74,24 @@ public class HomeController {
         return "productlist";
     }
 
+    //상품 조회 화면
+    @GetMapping("/products/admin")
+    public String ProductAdmin(Model model, @LoginUser SessionUser user){
+        log.info("/products/admin");
+
+        model.addAttribute("products", productService.getProductListByUserId(user.getId()));
+
+        return "product-admin";
+    }
+
     //상품 등록 화면
     @GetMapping("/product/save")
     public String ProductSave(@LoginUser SessionUser user){
-        log.info("HomeController  /product/save");
+        log.info("/product/save");
         return "product-save";
     }
+
+
 
     //
     // 카트 조회

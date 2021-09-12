@@ -103,11 +103,11 @@ var main = {
             //contentType: 'application/json; charset=utf-8', //서버로 보내는 request body의 타입
             //data: JSON.stringify(data) //서버로 보내는 데이터
         }).done(function () {
-            alert('삭제 성공');
+            alert('카트 상품 삭제 성공');
             window.location.href = '/carts';
         }).fail(function (error) {
             //alert(JSON.stringify(error));
-            alert('삭제 실패');
+            alert('카트 상품 삭제 실패');
         });
 
     },
@@ -134,6 +134,23 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
+    },
+    deleteProduct : function (productId) {
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/v1/products/' + productId,
+            //dataType: 'json', //서버에서 올 데이터 타입
+            //contentType: 'application/json; charset=utf-8', //서버로 보내는 request body의 타입
+            //data: JSON.stringify(data) //서버로 보내는 데이터
+        }).done(function () {
+            alert('상품 삭제 성공');
+            window.location.href = '/products/admin';
+        }).fail(function (error) {
+            //alert(JSON.stringify(error));
+            alert('상품 삭제 실패');
+        });
+
     },
     update : function () {
         var data = {

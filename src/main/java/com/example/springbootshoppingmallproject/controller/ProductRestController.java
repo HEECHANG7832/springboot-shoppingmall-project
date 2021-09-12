@@ -63,7 +63,8 @@ public class ProductRestController {
 
     //상품 삭제
     @DeleteMapping("/products/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
-        return ResponseEntity.ok().body(productService.deleteProduct(id));
+    public String deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        return "{ \"message\" : 삭제 성공}";
     }
 }
