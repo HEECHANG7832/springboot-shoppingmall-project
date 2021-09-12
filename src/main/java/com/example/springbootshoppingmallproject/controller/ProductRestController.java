@@ -25,11 +25,11 @@ public class ProductRestController {
 
     private final ProductService productService;
 
-    //상품 전체 조회
-    @GetMapping("/products")
-    public ResponseEntity<?> getProductList(@RequestParam(value = "category", required = false) String Category){
-        return ResponseEntity.ok().body(productService.getProductList());
-    }
+//    //상품 전체 조회
+//    @GetMapping("/products")
+//    public ResponseEntity<?> getProductList(@RequestParam(value = "category", required = false) String Category){
+//        return ResponseEntity.ok().body(productService.getProductList());
+//    }
 
     //상품 이름 조회
     @GetMapping("/products/{productname}")
@@ -44,11 +44,11 @@ public class ProductRestController {
         return productService.addProduct(productRequestDto, user.getId());
     }
 
-    //상품 Top8 랭킹 조회
-    @GetMapping("/top8products")
-    public ResponseEntity<?> getProductByOrderByPurchaseCountDesc(@PathVariable Long id){
-        return ResponseEntity.ok().body(productService.getProductListSortByPurchaseCountDesc());
-    }
+//    //상품 Top8 랭킹 조회
+//    @GetMapping("/top8products")
+//    public ResponseEntity<?> getProductByOrderByPurchaseCountDesc(@PathVariable Long id){
+//        return ResponseEntity.ok().body(productService.getProductListSortByPurchaseCountDesc());
+//    }
 
     //상품 수정
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
