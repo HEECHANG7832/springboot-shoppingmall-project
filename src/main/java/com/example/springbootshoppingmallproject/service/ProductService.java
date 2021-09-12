@@ -72,20 +72,23 @@ public class ProductService {
     }
 
     // 상품 추가
-    public String addProduct(ProductRequestDto productRequestDto) {
-        productRepository.save(Product.builder()
+    public Long addProduct(ProductRequestDto productRequestDto) {
+        log.info(productRequestDto.toString());
+        return productRepository.save(Product.builder()
                 .productName(productRequestDto.getProductName())
                 .description((productRequestDto.getDescription()))
                 .price(productRequestDto.getPrice())
                 .purchaseCount(0)
+                .rateAvg(0)
                 .limitCount(productRequestDto.getTotalCount())
                 .totalCount(productRequestDto.getTotalCount())
                 .productStatus((productRequestDto.getProductStatus()))
                 .titleImg(productRequestDto.getTitleImg())
                 .largeCategory(productRequestDto.getLargeCategory())
-                .build());
-
-        return "상품이 추가되었습니다.";
+                .shippingCost(productRequestDto.getShippingCost())
+                .shippingDueDate(productRequestDto.getShippingDueDate())
+                .saleRate(productRequestDto.getSaleRate())
+                .build()).getId();
     }
 
     //상품 조회

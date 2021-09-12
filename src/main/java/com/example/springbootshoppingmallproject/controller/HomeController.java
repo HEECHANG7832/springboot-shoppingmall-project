@@ -75,6 +75,13 @@ public class HomeController {
         return "productlist";
     }
 
+    //상품 등록 화면
+    @GetMapping("/product/save")
+    public String ProductSave(@LoginUser SessionUser user){
+        log.info("HomeController  /product/save");
+        return "product-save";
+    }
+
     //
     // 카트 조회
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")

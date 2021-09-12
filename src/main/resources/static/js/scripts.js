@@ -10,8 +10,8 @@ var main = {
             _this.saveReview();
         });
 
-        $('#btn-save').on('click', function () {
-            _this.save();
+        $('#btn-product-save').on('click', function () {
+            _this.productSave();
         });
 
         $('#btn-update').on('click', function () {
@@ -111,22 +111,26 @@ var main = {
         });
 
     },
-    save : function () {
+    productSave : function () {
         var data = {
-            title: $('#title').val(),
-            author: $('#author').val(),
-            content: $('#content').val()
+            productName: $('#product-name').val(),
+            description: $('#description').val(),
+            price: $('#price').val(),
+            titleImg: $('#title-img').val(),
+            largeCategory: $('#large-category').val(),
+            shippingCost: $('#shipping-cost').val(),
+            saleRate: $('#sale-rate').val(),
         };
 
         $.ajax({
             type: 'POST',
-            url: '/api/v1/posts',
+            url: '/api/v1/products',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
-            alert('글이 등록되었습니다.');
-            window.location.href = '/posts';
+            alert('상품이 이 등록되었습니다.');
+            window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });

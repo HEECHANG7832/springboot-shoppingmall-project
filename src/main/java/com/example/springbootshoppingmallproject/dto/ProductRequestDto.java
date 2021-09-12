@@ -24,9 +24,13 @@ public class ProductRequestDto {
     private String description;
     private Integer price;
     private Integer purchaseCount;
+    private Integer rateAvg;
     private Integer limitCount;
     private Integer totalCount;
     private Integer productStatus;
     private String titleImg;
     private String largeCategory;
+    private Integer shippingCost;
+    private Integer shippingDueDate;
+    private Integer saleRate;
 }

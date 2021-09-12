@@ -38,8 +38,8 @@ public class ProductRestController {
 
     //상품 등록
     @PostMapping("/products")
-    public ResponseEntity<?> addProduct(@RequestBody ProductRequestDto productRequestDto) {
-        return ResponseEntity.ok().body(productService.addProduct(productRequestDto));
+    public Long addProduct(@RequestBody ProductRequestDto productRequestDto) {
+        return productService.addProduct(productRequestDto);
     }
 
 //    //상품 상세 조회
