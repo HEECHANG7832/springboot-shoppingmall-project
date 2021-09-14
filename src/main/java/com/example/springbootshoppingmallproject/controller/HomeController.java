@@ -3,9 +3,11 @@ package com.example.springbootshoppingmallproject.controller;
 import com.example.springbootshoppingmallproject.config.auth.LoginUser;
 import com.example.springbootshoppingmallproject.config.auth.dto.SessionUser;
 import com.example.springbootshoppingmallproject.domain.Product;
+import com.example.springbootshoppingmallproject.domain.RecentlyViewedProducts;
 import com.example.springbootshoppingmallproject.dto.ProductRequestDto;
 import com.example.springbootshoppingmallproject.service.CartService;
 import com.example.springbootshoppingmallproject.service.ProductService;
+import com.example.springbootshoppingmallproject.service.RecentlyViewedProductsService;
 import com.example.springbootshoppingmallproject.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,7 @@ public class HomeController {
     private final ProductService productService;
     private final CartService cartService;
     private final ReviewService reviewService;
+    private final RecentlyViewedProductsService recentlyViewedProductsService;
 
     //메인 화면 상품 리스트
     @GetMapping("/")
@@ -50,6 +53,7 @@ public class HomeController {
 
         if (user != null) {
             model.addAttribute("user", user);
+            recentlyViewedProductsService.addRecentlyViewedProduct(user.getId(), id);
         }
 
         return "product";
