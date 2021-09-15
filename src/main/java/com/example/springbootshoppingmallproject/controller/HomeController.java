@@ -30,7 +30,6 @@ public class HomeController {
     //메인 화면 상품 리스트
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user){
-        log.info("/");
 
         model.addAttribute("products", productService.getProductList());
         model.addAttribute("rankproducts", productService.getProductListSortByPurchaseCountDesc());
@@ -45,7 +44,6 @@ public class HomeController {
     //개별 상품 상세보기
     @GetMapping("/product/{id}")
     public String product(Model model, @PathVariable Long id, @LoginUser SessionUser user){
-        log.info("/product/{id}");
 
         model.addAttribute("product", productService.getProduct(id));
         model.addAttribute("relatedproducts", productService.getRelatedProductList(id));
@@ -63,8 +61,6 @@ public class HomeController {
     @GetMapping("/productlist/{page}")
     public String ProductList(Model model, @PathVariable int page, @RequestParam(required = false, name = "search") String productName, @LoginUser SessionUser user){
 
-        log.info("/productlist");
-
         Page<Product> productPages = productService.getProductListByProductName(page, productName);
 
         model.addAttribute("products", productPages);
@@ -81,7 +77,6 @@ public class HomeController {
     //상품 조회 화면
     @GetMapping("/products/admin")
     public String ProductAdmin(Model model, @LoginUser SessionUser user){
-        log.info("/products/admin");
 
         model.addAttribute("products", productService.getProductListByUserId(user.getId()));
 
@@ -95,7 +90,6 @@ public class HomeController {
     //상품 등록 화면
     @GetMapping("/product/save")
     public String ProductSave(Model model, @LoginUser SessionUser user){
-        log.info("/product/save");
 
         if (user != null) {
             model.addAttribute("user", user);
@@ -107,7 +101,6 @@ public class HomeController {
     //상품 수정 화면
     @GetMapping("/product/update/{productid}")
     public String ProductUpdate(Model model, @PathVariable(name="productid")Long productId, @LoginUser SessionUser user){
-        log.info("/product/update");
 
         model.addAttribute("product", productService.getProduct(productId));
 
