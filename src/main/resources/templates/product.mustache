@@ -34,20 +34,33 @@
 <section>
     <link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css" integrity="sha384-jbCTJB16Q17718YM9U22iJkhuGbS0Gd2LjaWb4YJEZToOPmnKDjySVa323U+W7Fv" crossorigin="anonymous">
     <div class="container">
-        <div class="col-md-12">
-            <div class="offer-dedicated-body-left">
-                <div class="tab-content" id="pills-tabContent">
 
-                    <div class="tab-pane fade active show" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">
-                        <div class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
-                            <
-                            <h5 class="mb-1">All Ratings and Reviews</h5>
-                            {{#reviews}}
-                            <div class="reviews-members pt-4 pb-4">
-                                <div class="media">
-                                    <!-- <a href="#"><img alt="Generic placeholder image" src="" class="mr-1 rounded-pill"></a> -->
-                                    <div class="media-body">
-                                        <div class="reviews-members-header">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#asd">Review</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#qwe">Question</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="asd">
+
+                <div class="col-md-12">
+                    <div class="offer-dedicated-body-left">
+                        <div class="tab-content" id="pills-tabContent">
+
+                            <div class="tab-pane fade active show" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">
+                                <div class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
+
+                                    <h5 class="mb-1">All Ratings and Reviews</h5>
+                                    {{#reviews}}
+                                        <div class="reviews-members pt-4 pb-4">
+                                            <div class="media">
+                                                <!-- <a href="#"><img alt="Generic placeholder image" src="" class="mr-1 rounded-pill"></a> -->
+                                                <div class="media-body">
+                                                    <div class="reviews-members-header">
                                     <span class="star-rating float-right">
                                           <a href="#"><i class="icofont-ui-rating active"></i></a>
                                           <a href="#"><i class="icofont-ui-rating active"></i></a>
@@ -55,32 +68,23 @@
                                           <a href="#"><i class="icofont-ui-rating active"></i></a>
                                           <a href="#"><i class="icofont-ui-rating"></i></a>
                                           </span>
-                                            <h6 class="mb-1"><a class="text-black" href="#">{{title}}</a></h6>
-                                            <p class="text-gray">{{createdDate}}</p>
+                                                        <h6 class="mb-1"><a class="text-black" href="#">{{title}}</a></h6>
+                                                        <p class="text-gray">{{createdDate}}</p>
+                                                    </div>
+                                                    <div class="reviews-members-body">
+                                                        <p>{{content}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="reviews-members-body">
-                                            <p>{{content}}</p>
-                                        </div>
-                                        <div class="reviews-members-footer">
-                                            <ul class="rating">
-                                                <li class="fa fa-star"></li>
-                                                <li class="fa fa-star"></li>
-                                                <li class="fa fa-star"></li>
-                                                <li class="fa fa-star disable"></li>
-                                                <li class="fa fa-star disable"></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                        <hr>
+                                    {{/reviews}}
+                                    <a class="text-center w-100 d-block mt-4 font-weight-bold" href="#">See All Reviews</a>
                                 </div>
-                            </div>
-                            <hr>
-                            {{/reviews}}
-                            <a class="text-center w-100 d-block mt-4 font-weight-bold" href="#">See All Reviews</a>
-                        </div>
-                        <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
-                            <h5 class="mb-4">Leave Comment</h5>
-                            <p class="mb-2">Rate the Place</p>
-                            <div class="mb-4">
+                                <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
+                                    <h5 class="mb-4">Leave Comment</h5>
+                                    <p class="mb-2">Rate the Place</p>
+                                    <div class="mb-4">
                             <span class="star-rating">
                                  <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
                                  <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
@@ -88,25 +92,45 @@
                                  <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
                                  <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
                                  </span>
+                                    </div>
+                                    <form>
+                                        <div class="form-group">
+                                            <label>title</label>
+                                            <input type="text" class="form-control" id="title">
+                                            <label>Your Comment</label>
+                                            <textarea class="form-control" id="content"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-primary btn-sm" type="button" id="btn-saveReview"> Submit </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                            <form>
-                                <div class="form-group">
-                                    <label>title</label>
-                                    <input type="text" class="form-control" id="title">
-                                    <label>Your Comment</label>
-                                    <textarea class="form-control" id="content"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-sm" type="button" id="btn-saveReview"> Submit </button>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
+
             </div>
+
+            <div class="tab-pane fade" id="qwe">
+                <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
+                    <h5 class="mb-4">Customer question & answers</h5>
+                    <form>
+                        <div class="form-group">
+                            <label>title</label>
+                            <input type="text" class="form-control" id="title">
+                            <label>Question</label>
+                            <textarea class="form-control" id="content"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-sm" type="button" id="btn-saveReview"> Submit </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
-
 
 </section>
 
