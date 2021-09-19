@@ -34,7 +34,6 @@ public class ProductRestController {
     //상품 이름 조회
     @GetMapping("/products/{productname}")
     public Page<Product> getProductListByProductName(@PathVariable(value = "productname") String productName){
-        log.info("link /products/{productname}");
         return productService.getProductListByProductName(1, productName);
     }
 

@@ -31,7 +31,6 @@ public class CartRestController {
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/users/{userid}/carts")
     public List<CartResponseDto> getCartList(@PathVariable("userid") Long userId) {
-        log.info("/users/{userid}/carts");
         return cartService.getCartList(userId);
     }
 
@@ -39,7 +38,6 @@ public class CartRestController {
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping("/carts")
     public Long addCart(@RequestBody CartRequestDto cartRequestDto) {
-        log.info("/carts");
         return cartService.addCart(cartRequestDto);
     }
 

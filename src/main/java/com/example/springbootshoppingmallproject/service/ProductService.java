@@ -28,15 +28,12 @@ public class ProductService {
 
     //전체 상품 조회
     public Page<Product> getProductList(){
-        log.info("getProductList()");
-
         Pageable pageable = PageRequest.of(0, 8);
         return productRepository.findAll(pageable);
     }
 
     //LargeCategory 조회
     public Page<Product> getPageProductListByLargeCategory(int page, String largeCategory){
-        log.info("getPageProductListByLargeCategory(%d %s)", page, largeCategory);
 
         int realPage = page - 1;
         Pageable pageable = PageRequest.of(realPage, 8);
@@ -49,7 +46,6 @@ public class ProductService {
 
     //상품 이름 조회
     public Page<Product> getProductListByProductName(int page, String productName) {
-        log.info("getProductListByProductName(%d %s)", page, productName);
 
         int realPage = page - 1;
         Pageable pageable = PageRequest.of(realPage, 8);
@@ -63,7 +59,6 @@ public class ProductService {
 
     //상품 구매 순서별 조회
     public List<ProductResponseDto.MainProductResponseDto> getProductListSortByPurchaseCountDesc(){
-        log.info("getProductListSortByPurchaseCount()");
 
         List<Product> products = productRepository.findTop8ByOrderByPurchaseCountDesc();
 
@@ -80,7 +75,6 @@ public class ProductService {
 
     //User에 해당하는 상품 조회
     public List<ProductResponseDto> getProductListByUserId(Long userId) {
-        log.info("getProductListByUserId(%d)", userId);
 
         List<Product> products = productRepository.findAllByUserId(userId);
 
@@ -113,7 +107,6 @@ public class ProductService {
 
     //상품 조회
     public ProductResponseDto getProduct(Long id) {
-        log.info("ID : " + id);
 
         Optional<Product> productOpt = productRepository.findById(id);
 
@@ -128,7 +121,6 @@ public class ProductService {
     }
 
     public Page<Product> getRelatedProductList(Long id){
-        log.info("product Id : ", id);
 
         String largeCategory = productRepository.findById(id).get().getLargeCategory();
 

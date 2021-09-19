@@ -24,7 +24,6 @@ public class RecentlyViewedProductsService {
 
     //전체 상품 조회
     public void addRecentlyViewedProduct(Long userId, Long productId){
-        log.info("addRecentlyViewedProduct()");
 
         User user = userRepository.getById(userId);
         Product product = productRepository.getById(productId);
