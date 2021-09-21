@@ -96,4 +96,5 @@ Database
 ### 📋 DB 설계
 ![Untitled](https://user-images.githubusercontent.com/22570262/134138147-e919c281-bd8f-4bdb-a17a-4ae44ad1a47e.png)
 
-
+### 📋 REST API
+![제목 없음](https://user-images.githubusercontent.com/22570262/134147670-c0953ce8-7714-40fa-943d-74f3ebbe5d25.png)
