@@ -93,9 +93,7 @@ Database
 
 ![example](https://user-images.githubusercontent.com/22570262/132129166-2cae802a-cdc2-4975-a035-ef9e73fd0af1.png)
 
-**DB 설계**
+### 📋 DB 설계
+![Untitled](https://user-images.githubusercontent.com/22570262/134138147-e919c281-bd8f-4bdb-a17a-4ae44ad1a47e.png)
 
-- User - Cart 1대 N 관계
-- Product - Cart 1대 N 관계
-- User - Product 1대 N 관계
 
