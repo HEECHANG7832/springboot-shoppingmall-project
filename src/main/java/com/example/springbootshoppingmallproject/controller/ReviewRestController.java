@@ -5,6 +5,8 @@ import com.example.springbootshoppingmallproject.config.auth.dto.SessionUser;
 import com.example.springbootshoppingmallproject.dto.ReviewRequestDto;
 import com.example.springbootshoppingmallproject.dto.ReviewResponseDto;
 import com.example.springbootshoppingmallproject.service.ReviewService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
+@Api(value = "Reviews", description = "리뷰 API")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1")
@@ -25,7 +28,7 @@ public class ReviewRestController {
 //        return ResponseEntity.ok().body(reviewService.getReviewList(productId));
 //    }
 
-    //리뷰 작성하기
+    @ApiOperation(value = "리뷰 작성")
     @PostMapping("/products/{productid}/reviews")
     public Long addReview( @LoginUser SessionUser user,
                                         @PathVariable("productid") Long productId,

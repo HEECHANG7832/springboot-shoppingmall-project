@@ -9,6 +9,8 @@ import com.example.springbootshoppingmallproject.service.CartService;
 import com.example.springbootshoppingmallproject.service.ProductService;
 import com.example.springbootshoppingmallproject.service.RecentlyViewedProductsService;
 import com.example.springbootshoppingmallproject.service.ReviewService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
+@Api(value = "HomeController", description = "뷰 반환 컨트롤러")
 @RequiredArgsConstructor
 @Controller
 public class HomeController {
@@ -27,7 +30,7 @@ public class HomeController {
     private final ReviewService reviewService;
     private final RecentlyViewedProductsService recentlyViewedProductsService;
 
-    //메인 화면 상품 리스트
+    @ApiOperation(value = "메인 화면 상품 리스트, 상위 판매 상품 뷰")
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user){
 
@@ -41,7 +44,7 @@ public class HomeController {
         return "index";
     }
 
-    //개별 상품 상세보기
+    @ApiOperation(value = "개별 상품 상세 뷰")
     @GetMapping("/product/{id}")
     public String product(Model model, @PathVariable Long id, @LoginUser SessionUser user){
 
@@ -57,7 +60,7 @@ public class HomeController {
         return "product";
     }
 
-    //전체 상품 상세보기
+    @ApiOperation(value = "전체 상품 뷰")
     @GetMapping("/productlist/{page}")
     public String ProductList(Model model, @PathVariable int page, @RequestParam(required = false, name = "search") String productName, @LoginUser SessionUser user){
 
@@ -73,8 +76,8 @@ public class HomeController {
 
         return "productlist";
     }
-
-    //상품 조회 화면
+    
+    @ApiOperation(value = "판매자 상품 리스트 뷰")
     @GetMapping("/products/admin")
     public String ProductAdmin(Model model, @LoginUser SessionUser user){
 
@@ -86,8 +89,8 @@ public class HomeController {
 
         return "product-admin";
     }
-
-    //상품 등록 화면
+    
+    @ApiOperation(value = "상품 등록 뷰")
     @GetMapping("/product/save")
     public String ProductSave(Model model, @LoginUser SessionUser user){
 
@@ -98,7 +101,7 @@ public class HomeController {
         return "product-save";
     }
 
-    //상품 수정 화면
+    @ApiOperation(value = "상품 수정 뷰")
     @GetMapping("/product/update/{productid}")
     public String ProductUpdate(Model model, @PathVariable(name="productid")Long productId, @LoginUser SessionUser user){
 
@@ -110,11 +113,9 @@ public class HomeController {
 
         return "product-save";
     }
-
-    //
-    // 카트 조회
+    
     //@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    //@GetMapping("/users/{userId}/carts/{page}")
+    @ApiOperation(value = "카트 조회 뷰")
     @GetMapping("/carts")
     public String getCartList(Model model, @LoginUser SessionUser user) {
         log.info("HomeController  /carts");
@@ -127,6 +128,7 @@ public class HomeController {
         return "carts";
     }
 
+    @ApiOperation(value = "로그인 뷰")
     @GetMapping("/loginform")
     public String login(){
         return "loginform";
