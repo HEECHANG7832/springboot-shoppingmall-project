@@ -1,5 +1,6 @@
 package com.example.springbootshoppingmallproject.service;
 
+import com.example.springbootshoppingmallproject.common.LineKey;
 import com.example.springbootshoppingmallproject.common.LineMessageRequest;
 import com.example.springbootshoppingmallproject.common.Messages;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,8 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class LineMessageService {
+
+    private final LineKey lineKey;
 
     public void exchange() {
 
@@ -48,6 +51,7 @@ public class LineMessageService {
         RequestEntity<LineMessageRequest> requestEntity = RequestEntity
                 .post(uri)
                 .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Bearer {"+ lineKey.getKey() +"}")
                 .body(req);
 
         RestTemplate restTemplate = new RestTemplate();
