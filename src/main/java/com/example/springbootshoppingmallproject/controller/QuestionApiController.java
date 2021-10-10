@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @Slf4j
-@Api(tags = "messaging", description = "메세징 API")
+@Api(tags = "question", description = "질문 API")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1")
-public class MessagingApiController {
+public class QuestionApiController {
 
     private final LineMessageService lineMessageService;
 

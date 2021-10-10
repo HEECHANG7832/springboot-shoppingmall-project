@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @EntityListeners(value = {AuditingEntityListener.class})
-public class RecentlyViewedProducts{
+public class RecentlyViewedProduct extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

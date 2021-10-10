@@ -3,18 +3,15 @@ package com.example.springbootshoppingmallproject.controller;
 import com.example.springbootshoppingmallproject.config.auth.LoginUser;
 import com.example.springbootshoppingmallproject.config.auth.dto.SessionUser;
 import com.example.springbootshoppingmallproject.domain.Product;
-import com.example.springbootshoppingmallproject.domain.RecentlyViewedProducts;
-import com.example.springbootshoppingmallproject.dto.ProductRequestDto;
 import com.example.springbootshoppingmallproject.service.CartService;
 import com.example.springbootshoppingmallproject.service.ProductService;
-import com.example.springbootshoppingmallproject.service.RecentlyViewedProductsService;
+import com.example.springbootshoppingmallproject.service.RecentlyViewedProductService;
 import com.example.springbootshoppingmallproject.service.ReviewService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +25,7 @@ public class HomeController {
     private final ProductService productService;
     private final CartService cartService;
     private final ReviewService reviewService;
-    private final RecentlyViewedProductsService recentlyViewedProductsService;
+    private final RecentlyViewedProductService recentlyViewedProductService;
 
     @ApiOperation(value = "메인 화면 상품 리스트, 상위 판매 상품 뷰")
     @GetMapping("/")
@@ -54,7 +51,7 @@ public class HomeController {
 
         if (user != null) {
             model.addAttribute("user", user);
-            recentlyViewedProductsService.addRecentlyViewedProduct(user.getId(), id);
+            recentlyViewedProductService.addRecentlyViewedProduct(user.getId(), id);
         }
 
         return "product";
@@ -88,6 +85,22 @@ public class HomeController {
         }
 
         return "product-admin";
+    }
+
+    @ApiOperation(value = "유저 정보 뷰")
+    @GetMapping("/products/user")
+    public String ProductUser(Model model, @LoginUser SessionUser user){
+
+        //최근 뷰
+        model.addAttribute("recentlyViewedProducts", recentlyViewedProductService.getRecentlyViewedProduct(user.getId()));
+        //오더뷰
+
+
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
+        return "product-user";
     }
     
     @ApiOperation(value = "상품 등록 뷰")

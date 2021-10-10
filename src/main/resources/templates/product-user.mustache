@@ -1,0 +1,39 @@
+{{>layout/header}}
+
+<link href="/css/carts.css" rel="stylesheet" />
+
+<section class="py-5">
+    <div class="container pb-5 mt-n2 mt-md-n3">
+        <div class="row">
+            <div class="col">
+                <h2 class="h6 d-flex flex-wrap justify-content-between align-items-center px-4 py-3 bg-secondary"><span>Recently Viewed Products</span></h2>
+
+                <!-- Item-->
+                <table class="table table-horizontal table-bordered">
+                    <thead class="thead-strong">
+                    <tr>
+                        <th>번호</th>
+                        <th>상품 명</th>
+                        <th>작가</th>
+                        <th>시간</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    {{#recentlyViewedProducts}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td><a href="/product/{{product.id}}">{{product.productName}}</a></td>
+                            <td>{{product.largeCategory}}</td>
+                            <td>{{modifyedDate}}</td>
+                        </tr>
+                    {{/recentlyViewedProducts}}
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{{>layout/footer}}
