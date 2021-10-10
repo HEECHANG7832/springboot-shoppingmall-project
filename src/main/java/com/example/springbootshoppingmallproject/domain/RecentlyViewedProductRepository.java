@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface RecentlyViewedProductRepository extends JpaRepository<RecentlyViewedProduct, Long> {
-    List<RecentlyViewedProduct> findAllByUserId(Long userId);
+    List<RecentlyViewedProduct> findAllByUserIdOrderByModifiedDateDesc(Long userId);
 }

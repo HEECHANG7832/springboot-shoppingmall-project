@@ -28,7 +28,7 @@ public class RecentlyViewedProductService {
     //최근 뷰 조회
     public List<RecentlyViewedResponseDto> getRecentlyViewedProduct(Long userId){
 
-        List<RecentlyViewedProduct> rvpList = recentlyViewedProductsRepository.findAllByUserId(userId);
+        List<RecentlyViewedProduct> rvpList = recentlyViewedProductsRepository.findAllByUserIdOrderByModifiedDateDesc(userId);
 
         return rvpList.stream().map(RecentlyViewedResponseDto::new).collect(Collectors.toList());
     }
