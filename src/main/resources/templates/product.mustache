@@ -131,7 +131,7 @@
                             <tr>
                                 <td>{{id}}</td>
                                 <td><a href="/product/{{product.id}}/qnaPost/{{id}}">{{title}}</a></td>
-                                <td>{{user.name}}</td>
+                                {{#user}}<td>{{name}}</td>{{/user}}
                                 <td>{{createdDate}}</td>
                             </tr>
                         {{/qnaPosts}}

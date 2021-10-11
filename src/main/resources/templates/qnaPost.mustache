@@ -37,12 +37,14 @@
                     <ul class="comments-list">
                         <li class="comment">
                             {{#qnaPosts}}
+                                {{#user}}
                             <a class="pull-left" href="#">
-                                <img class="avatar" src="{{user.picture}}" alt="avatar">
+                                <img class="avatar" src="{{picture}}" alt="avatar">
                             </a>
                             <div class="comment-body">
                                 <div class="comment-heading">
-                                    <h4 class="user">{{user.name}}</h4>
+                                    <h4 class="user">{{name}}</h4>
+                                {{/user}}
                                     <h5 class="time">{{createdDate}}</h5>
                                 </div>
                                 <p>{{content}}</p>

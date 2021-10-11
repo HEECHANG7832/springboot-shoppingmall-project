@@ -3,6 +3,7 @@ package com.example.springbootshoppingmallproject.dto;
 import com.example.springbootshoppingmallproject.domain.Product;
 import com.example.springbootshoppingmallproject.domain.QnAPost;
 import com.example.springbootshoppingmallproject.domain.Review;
+import com.example.springbootshoppingmallproject.domain.user.User;
 import lombok.*;
 
 import java.io.Serializable;
@@ -18,13 +19,13 @@ public class QnAPostResponseDto {
     private String title;
     private String content;
     private LocalDateTime createdDate;
-    private Long userId;
+    private User user;
     private Long productId;
-    private Long qnaPostId;
+    private List<QnAPost> qnAPosts;
 
     public QnAPostResponseDto(QnAPost entity){
         this.id = entity.getId();
-        this.userId = entity.getUser().getId();
+        this.user = entity.getUser();
         this.productId = entity.getProduct().getId();
         this.title = entity.getTitle();
         this.content = entity.getContent();
@@ -40,7 +41,7 @@ public class QnAPostResponseDto {
         private String title;
         private String content;
         private LocalDateTime createdDate;
-        private Long userId;
+        private User user;
         private Long productId;
         private List<QnAPost> qnaPosts;
 
@@ -49,7 +50,7 @@ public class QnAPostResponseDto {
             this.title = entity.getTitle();
             this.content = entity.getContent();
             this.createdDate = entity.getCreatedDate();
-            this.userId = entity.getUser().getId();
+            this.user = entity.getUser();
             this.productId = entity.getProduct().getId();
             this.qnaPosts = entity.getQnAPosts();
         }
