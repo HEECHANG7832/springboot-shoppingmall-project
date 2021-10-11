@@ -145,6 +145,12 @@ public class HomeController {
     public String login(){
         return "loginform";
     }
+
+    @GetMapping("/access-denied")
+    public String accessDenied(){
+        return "accessDenied";
+    }
+
 //
 //    @GetMapping("/login-error")
 //    public String loginError(Model model){

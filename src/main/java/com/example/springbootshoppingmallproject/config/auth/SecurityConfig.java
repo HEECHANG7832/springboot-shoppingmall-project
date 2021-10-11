@@ -32,9 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     //로그아웃 성공시 "/" 주소로 이동
                     .logout()
                         .logoutSuccessUrl("/")
-//                .and()
-//                    .exceptionHandling()
-//                        .accessDeniedPage("/access-denied")
+                .and()
+                    .exceptionHandling()
+                        .accessDeniedPage("/access-denied")
                 .and()
                     //Oauth2 로그인 설정
                     .oauth2Login()
