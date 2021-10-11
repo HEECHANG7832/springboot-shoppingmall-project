@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -23,11 +24,21 @@ public class QnAPostService {
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
 
+    //해당 product의 모든 QnA post 조회
     public List<QnAPostResponseDto> getQnAPostList(Long productId) {
 
         List<QnAPost> qnAPosts = qnAPostRepository.findAllByProductId(productId);
 
         return qnAPosts.stream().map(QnAPostResponseDto::new).collect(Collectors.toList());
+    }
+
+    //특정 QnA post와 관련된 post 조회
+    public QnAPostResponseDto getQnAPostDetailList(Long productId, Long postId) {
+
+        QnAPost qnAPost = qnAPostRepository.findById(postId).orElseThrow(()-> new RuntimeException("존재하지 않는 Post입니다."));
+
+        return new QnAPostResponseDto(qnAPost);
+
     }
 
     //QnA 작성
@@ -45,6 +56,27 @@ public class QnAPostService {
 
         return qnAPostRepository.save(post).getId();
     }
+
+    public Long addQnAPostComment(QnAPostRequestDto qnAPostRequestDto) {
+
+        User user = userRepository.getById(qnAPostRequestDto.getUserId());
+        Product product = productRepository.getById(qnAPostRequestDto.getProductId());
+
+        List<QnAPost> comments = qnAPostRepository.findById(qnAPostRequestDto.getQnAPostId())
+                .orElseThrow(()-> new RuntimeException("존재하지 않는 Post입니다."))
+                .getQnAPost();
+
+        QnAPost comment = QnAPost.builder()
+                .content(qnAPostRequestDto.getContent())
+                .user(user)
+                .product(product)
+                .build();
+
+        comments.add(comment);
+
+        return qnAPostRepository.save(comment).getId();
+    }
+
 
 //    public String updateReview(Long reviewId, ReviewRequestDto reviewRequestDto) {
 //

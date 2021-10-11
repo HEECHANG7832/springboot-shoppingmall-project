@@ -21,14 +21,26 @@ public class QnAPostRestController {
 
     private final QnAPostService qnAPostService;
 
-    @ApiOperation(value = "리뷰 작성")
-    @PostMapping("/products/{productid}/questions")
-    public Long addReview( @LoginUser SessionUser user,
+    @ApiOperation(value = "QnA 포스트 작성")
+    @PostMapping("/products/{productid}/qnaPost")
+    public Long addQnAPost( @LoginUser SessionUser user,
                                         @PathVariable("productid") Long productId,
                                         @RequestBody QnAPostRequestDto qnAPostRequestDto){
         qnAPostRequestDto.setProductId(productId);
         qnAPostRequestDto.setUserId(user.getId());
         return qnAPostService.addQnAPost(qnAPostRequestDto);
+    }
+
+    //comment
+    @PostMapping("/products/{productid}/qnaPost/{qnapostid}")
+    public Long addQnAPostComment(@LoginUser SessionUser user,
+                                          @PathVariable("productid") Long productId,
+                                          @PathVariable("qnapostid") Long qnaPostId,
+                                          @RequestBody QnAPostRequestDto qnAPostRequestDto){
+        qnAPostRequestDto.setProductId(productId);
+        qnAPostRequestDto.setUserId(user.getId());
+        qnAPostRequestDto.setQnAPostId(qnaPostId);
+        return qnAPostService.addQnAPostComment(qnAPostRequestDto);
     }
 
 }

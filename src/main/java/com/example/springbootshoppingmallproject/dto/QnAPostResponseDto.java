@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @ToString
 public class QnAPostResponseDto {
 
-    private Long Id;
+    private Long id;
     private String title;
     private String content;
     private LocalDateTime createdDate;
@@ -22,7 +22,7 @@ public class QnAPostResponseDto {
     private Long qnaPostId;
 
     public QnAPostResponseDto(QnAPost entity){
-        this.Id = entity.getId();
+        this.id = entity.getId();
         this.userId = entity.getUser().getId();
         this.productId = entity.getProduct().getId();
         this.title = entity.getTitle();

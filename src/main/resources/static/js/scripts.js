@@ -14,6 +14,10 @@ var main = {
             _this.saveQnAPost();
         });
 
+        $('#btn-saveQnAComment').on('click', function () {
+            _this.saveQnAPostComment();
+        });
+
         $('#btn-product-save').on('click', function () {
             _this.saveProduct();
         });
@@ -55,18 +59,37 @@ var main = {
     saveQnAPost : function () {
         var data = {
             title: $('#qnaTitle').val(),
-            content: $('#ansContent').val(),
+            content: $('#qnaContent').val(),
         };
 
         $.ajax({
             type: 'POST',
-            url: '/api/v1/products/'+ $('#product_id')[0].innerHTML + '/questions',
+            url: '/api/v1/products/'+ $('#product_id')[0].innerHTML + '/qnaPost',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
             alert('QnA 글이 등록되었습니다.');
             window.location.href = '/product/'+ $('#product_id')[0].innerHTML;
+        }).fail(function (error) {
+            //alert(JSON.stringify(error));
+            alert('로그인이 필요한 서비스입니다.');
+        });
+    },
+    saveQnAPostComment : function () {
+        var data = {
+            content: $('#commentContent').val(),
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/products/'+ $('#product-id')[0].innerHTML + '/qnaPost/' + $('#post-id')[0].innerHTML,
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('QnA 글이 등록되었습니다.');
+            window.location.href = '/product/'+ $('#product-id')[0].innerHTML + '/qnaPost/' + $('#post-id')[0].innerHTML;
         }).fail(function (error) {
             //alert(JSON.stringify(error));
             alert('로그인이 필요한 서비스입니다.');

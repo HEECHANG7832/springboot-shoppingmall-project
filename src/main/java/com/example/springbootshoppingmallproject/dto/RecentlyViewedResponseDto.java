@@ -15,12 +15,12 @@ import java.time.LocalDateTime;
 @ToString
 public class RecentlyViewedResponseDto {
 
-    private Long Id;
+    private Long id;
     private Product product;
     private LocalDateTime modifyedDate;
 
     public RecentlyViewedResponseDto(RecentlyViewedProduct entity){
-        this.Id = entity.getId();
+        this.id = entity.getId();
         this.product = entity.getProduct();
         this.modifyedDate = entity.getModifiedDate();
 

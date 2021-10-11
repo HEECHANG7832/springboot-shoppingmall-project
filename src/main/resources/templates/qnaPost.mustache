@@ -1,0 +1,83 @@
+{{>layout/header}}
+
+<link href="/css/qnaPost.css" rel="stylesheet" />
+
+
+<section class="py-5">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <div class="container bootstrap snippets bootdey">
+        <div class="col-sm-8">
+            <div class="panel panel-white post panel-shadow">
+
+                {{#qnaPostListResponse}}
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="{{user.picture}}" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>{{user.name}}</b></a>
+                            made a post.
+                        </div>
+                        <h6 class="text-muted time">{{createdDate}}</h6>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <span class="invisible" id="post-id">{{id}}</span><span class="invisible" id="product-id">{{productId}}</span>
+                    <h6 class="mb-1">{{title}}</h6>
+                    <p>{{content}}</p>
+                </div>
+                <div class="post-footer">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="Add a comment" type="text" id="commentContent">
+                        <button class="btn btn-primary btn-sm" type="button" id="btn-saveQnAComment"> Submit </button>
+                    </div>
+                    <ul class="comments-list">
+                        <li class="comment">
+                            <a class="pull-left" href="#">
+                                <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                            </a>
+                            <div class="comment-body">
+                                <div class="comment-heading">
+                                    <h4 class="user">Gavino Free</h4>
+                                    <h5 class="time">5 minutes ago</h5>
+                                </div>
+                                <p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
+                            </div>
+                            <ul class="comments-list">
+                                <li class="comment">
+                                    <a class="pull-left" href="#">
+                                        <img class="avatar" src="https://bootdey.com/img/Content/user_3.jpg" alt="avatar">
+                                    </a>
+                                    <div class="comment-body">
+                                        <div class="comment-heading">
+                                            <h4 class="user">Ryan Haywood</h4>
+                                            <h5 class="time">3 minutes ago</h5>
+                                        </div>
+                                        <p>Relax my friend</p>
+                                    </div>
+                                </li>
+                                <li class="comment">
+                                    <a class="pull-left" href="#">
+                                        <img class="avatar" src="https://bootdey.com/img/Content/user_2.jpg" alt="avatar">
+                                    </a>
+                                    <div class="comment-body">
+                                        <div class="comment-heading">
+                                            <h4 class="user">Gavino Free</h4>
+                                            <h5 class="time">3 minutes ago</h5>
+                                        </div>
+                                        <p>Ok, cool.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                {{/qnaPostListResponse}}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{{>layout/footer}}

@@ -140,6 +140,19 @@ public class HomeController {
         return "carts";
     }
 
+    @ApiOperation(value = "QnA 포스트 뷰")
+    @GetMapping("/product/{productid}/qnaPost/{id}")
+    public String qnaPostDetail(Model model, @PathVariable(name="productid") Long productId, @PathVariable Long id, @LoginUser SessionUser user){
+
+        model.addAttribute("qnaPostListResponse", qnAPostService.getQnAPostDetailList(productId, id));
+
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
+        return "qnaPost";
+    }
+
     @ApiOperation(value = "로그인 뷰")
     @GetMapping("/loginform")
     public String login(){
