@@ -3,10 +3,7 @@ package com.example.springbootshoppingmallproject.controller;
 import com.example.springbootshoppingmallproject.config.auth.LoginUser;
 import com.example.springbootshoppingmallproject.config.auth.dto.SessionUser;
 import com.example.springbootshoppingmallproject.domain.Product;
-import com.example.springbootshoppingmallproject.service.CartService;
-import com.example.springbootshoppingmallproject.service.ProductService;
-import com.example.springbootshoppingmallproject.service.RecentlyViewedProductService;
-import com.example.springbootshoppingmallproject.service.ReviewService;
+import com.example.springbootshoppingmallproject.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +22,7 @@ public class HomeController {
     private final ProductService productService;
     private final CartService cartService;
     private final ReviewService reviewService;
+    private final QnAPostService qnAPostService;
     private final RecentlyViewedProductService recentlyViewedProductService;
 
     @ApiOperation(value = "메인 화면 상품 리스트, 상위 판매 상품 뷰")
@@ -48,6 +46,7 @@ public class HomeController {
         model.addAttribute("product", productService.getProduct(id));
         model.addAttribute("relatedproducts", productService.getRelatedProductList(id));
         model.addAttribute("reviews", reviewService.getReviewList(id));
+        model.addAttribute("qnaPosts", qnAPostService.getQnAPostList(id));
 
         if (user != null) {
             model.addAttribute("user", user);

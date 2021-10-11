@@ -10,6 +10,10 @@ var main = {
             _this.saveReview();
         });
 
+        $('#btn-saveQnAPost').on('click', function () {
+            _this.saveQnAPost();
+        });
+
         $('#btn-product-save').on('click', function () {
             _this.saveProduct();
         });
@@ -41,7 +45,27 @@ var main = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
-            alert('글이 등록되었습니다.');
+            alert('Review 글이 등록되었습니다.');
+            window.location.href = '/product/'+ $('#product_id')[0].innerHTML;
+        }).fail(function (error) {
+            //alert(JSON.stringify(error));
+            alert('로그인이 필요한 서비스입니다.');
+        });
+    },
+    saveQnAPost : function () {
+        var data = {
+            title: $('#qnaTitle').val(),
+            content: $('#ansContent').val(),
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/products/'+ $('#product_id')[0].innerHTML + '/questions',
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function() {
+            alert('QnA 글이 등록되었습니다.');
             window.location.href = '/product/'+ $('#product_id')[0].innerHTML;
         }).fail(function (error) {
             //alert(JSON.stringify(error));

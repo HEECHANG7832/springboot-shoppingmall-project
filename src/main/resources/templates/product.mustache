@@ -115,15 +115,39 @@
             <div class="tab-pane fade" id="qwe">
                 <div class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
                     <h5 class="mb-4">Customer question & answers</h5>
+
+
+                    <table class="table table-horizontal table-bordered">
+                        <thead class="thead-strong">
+                        <tr>
+                            <th>Id</th>
+                            <th>title</th>
+                            <th>user</th>
+                            <th>createdDate</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        {{#qnaPosts}}
+                            <tr>
+                                <td>{{id}}</td>
+                                <td><a href="/product/{{product.id}}">{{title}}</a></td>
+                                <td>{{user.name}}</td>
+                                <td>{{createdDate}}</td>
+                            </tr>
+                        {{/qnaPosts}}
+                        </tbody>
+                    </table>
+
+
                     <form>
                         <div class="form-group">
                             <label>title</label>
-                            <input type="text" class="form-control" id="title">
+                            <input type="text" class="form-control" id="qnaTitle">
                             <label>Question</label>
-                            <textarea class="form-control" id="content"></textarea>
+                            <textarea class="form-control" id="qnaContent"></textarea>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary btn-sm" type="button" id="btn-saveReview"> Submit </button>
+                            <button class="btn btn-primary btn-sm" type="button" id="btn-saveQnAPost"> Submit </button>
                         </div>
                     </form>
                 </div>

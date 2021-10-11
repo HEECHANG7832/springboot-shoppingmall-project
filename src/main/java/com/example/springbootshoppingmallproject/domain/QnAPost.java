@@ -1,0 +1,40 @@
+package com.example.springbootshoppingmallproject.domain;
+
+import com.example.springbootshoppingmallproject.domain.user.User;
+import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@EntityListeners(value = {AuditingEntityListener.class})
+public class QnAPost extends BaseTimeEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
+    private String title;
+
+    @Column(columnDefinition = "TEXT")
+    private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @OneToMany
+    @JoinColumn(name = "qnaPost_id")
+    private List<QnAPost> qnAPost;
+}
