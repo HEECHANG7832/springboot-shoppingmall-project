@@ -11,14 +11,16 @@
 
                 {{#qnaPostDetailListResponse}}
                 <div class="post-heading">
+                    {{#user}}
                     <div class="pull-left image">
-                        <img src="{{user.picture}}" class="img-circle avatar" alt="user profile image">
+                        <img src="{{picture}}" class="img-circle avatar" alt="user profile image">
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="#"><b>{{user.name}}</b></a>
+                            <a href="#"><b>{{name}}</b></a>
                             made a post.
                         </div>
+                        {{/user}}
                         <h6 class="text-muted time">{{createdDate}}</h6>
                     </div>
                 </div>
