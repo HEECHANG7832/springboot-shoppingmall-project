@@ -34,7 +34,12 @@ public class QnAPost extends BaseTimeEntity {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @OneToMany
-    @JoinColumn(name = "qnaPost_id")
-    private List<QnAPost> qnAPost;
+    //자식 정의
+    @OneToMany(mappedBy = "superQnAPost")
+    private List<QnAPost> qnAPosts;
+
+    //부모 정의
+    @ManyToOne
+    @JoinColumn(name = "super_qna_post_id")
+    private QnAPost superQnAPost;
 }

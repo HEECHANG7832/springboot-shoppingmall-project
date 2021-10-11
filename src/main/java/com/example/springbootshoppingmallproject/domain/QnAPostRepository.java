@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface QnAPostRepository extends JpaRepository<QnAPost, Long> {
-    List<QnAPost> findAllByProductId(Long productId);
+    List<QnAPost> findAllByProductIdAndSuperQnAPostIsNull(Long productId);
 }

@@ -24,21 +24,20 @@ public class QnAPostService {
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
 
-    //해당 product의 모든 QnA post 조회
+    //해당 product의 모든 super QnA post 조회
     public List<QnAPostResponseDto> getQnAPostList(Long productId) {
 
-        List<QnAPost> qnAPosts = qnAPostRepository.findAllByProductId(productId);
+        List<QnAPost> qnAPosts = qnAPostRepository.findAllByProductIdAndSuperQnAPostIsNull(productId);
 
         return qnAPosts.stream().map(QnAPostResponseDto::new).collect(Collectors.toList());
     }
 
     //특정 QnA post와 관련된 post 조회
-    public QnAPostResponseDto getQnAPostDetailList(Long productId, Long postId) {
+    public QnAPostResponseDto.QnAPostDetailResponseDto getQnAPostDetailList(Long productId, Long postId) {
 
         QnAPost qnAPost = qnAPostRepository.findById(postId).orElseThrow(()-> new RuntimeException("존재하지 않는 Post입니다."));
 
-        return new QnAPostResponseDto(qnAPost);
-
+        return new QnAPostResponseDto.QnAPostDetailResponseDto(qnAPost);
     }
 
     //QnA 작성
@@ -62,14 +61,15 @@ public class QnAPostService {
         User user = userRepository.getById(qnAPostRequestDto.getUserId());
         Product product = productRepository.getById(qnAPostRequestDto.getProductId());
 
-        List<QnAPost> comments = qnAPostRepository.findById(qnAPostRequestDto.getQnAPostId())
-                .orElseThrow(()-> new RuntimeException("존재하지 않는 Post입니다."))
-                .getQnAPost();
+        QnAPost superQnAPost = qnAPostRepository.findById(qnAPostRequestDto.getQnAPostId())
+                .orElseThrow(()-> new RuntimeException("존재하지 않는 Post입니다."));
+        List<QnAPost> comments = superQnAPost.getQnAPosts();
 
         QnAPost comment = QnAPost.builder()
                 .content(qnAPostRequestDto.getContent())
                 .user(user)
                 .product(product)
+                .superQnAPost(superQnAPost) //양방향 관계
                 .build();
 
         comments.add(comment);

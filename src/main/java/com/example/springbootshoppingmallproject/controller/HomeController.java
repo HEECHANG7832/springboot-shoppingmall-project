@@ -144,7 +144,7 @@ public class HomeController {
     @GetMapping("/product/{productid}/qnaPost/{id}")
     public String qnaPostDetail(Model model, @PathVariable(name="productid") Long productId, @PathVariable Long id, @LoginUser SessionUser user){
 
-        model.addAttribute("qnaPostListResponse", qnAPostService.getQnAPostDetailList(productId, id));
+        model.addAttribute("qnaPostDetailListResponse", qnAPostService.getQnAPostDetailList(productId, id));
 
         if (user != null) {
             model.addAttribute("user", user);

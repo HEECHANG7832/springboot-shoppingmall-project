@@ -9,7 +9,7 @@
         <div class="col-sm-8">
             <div class="panel panel-white post panel-shadow">
 
-                {{#qnaPostListResponse}}
+                {{#qnaPostDetailListResponse}}
                 <div class="post-heading">
                     <div class="pull-left image">
                         <img src="{{user.picture}}" class="img-circle avatar" alt="user profile image">
@@ -34,16 +34,19 @@
                     </div>
                     <ul class="comments-list">
                         <li class="comment">
+                            {{#qnaPosts}}
                             <a class="pull-left" href="#">
-                                <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                                <img class="avatar" src="{{user.picture}}" alt="avatar">
                             </a>
                             <div class="comment-body">
                                 <div class="comment-heading">
-                                    <h4 class="user">Gavino Free</h4>
-                                    <h5 class="time">5 minutes ago</h5>
+                                    <h4 class="user">{{user.name}}</h4>
+                                    <h5 class="time">{{createdDate}}</h5>
                                 </div>
-                                <p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
+                                <p>{{content}}</p>
                             </div>
+                            {{/qnaPosts}}
+                            <!--
                             <ul class="comments-list">
                                 <li class="comment">
                                     <a class="pull-left" href="#">
@@ -69,11 +72,11 @@
                                         <p>Ok, cool.</p>
                                     </div>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </li>
                     </ul>
                 </div>
-                {{/qnaPostListResponse}}
+                {{/qnaPostDetailListResponse}}
 
             </div>
         </div>
