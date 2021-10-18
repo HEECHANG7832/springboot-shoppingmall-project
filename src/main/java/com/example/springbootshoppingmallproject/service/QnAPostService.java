@@ -23,6 +23,7 @@ public class QnAPostService {
     private final QnAPostRepository qnAPostRepository;
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
+    private final LineMessageService lineMessageService;
 
     //해당 product의 모든 super QnA post 조회
     public List<QnAPostResponseDto> getQnAPostList(Long productId) {
@@ -45,6 +46,18 @@ public class QnAPostService {
 
         User user = userRepository.getById(qnAPostRequestDto.getUserId());
         Product product = productRepository.getById(qnAPostRequestDto.getProductId());
+
+        StringBuilder content = new StringBuilder();
+        content.append("[QnA Alert] ID : ");
+        content.append(user.getId() );
+        content.append("\nEmail : ");
+        content.append(user.getEmail());
+        content.append("\n상품 명 : ");
+        content.append(product.getProductName());
+        content.append("\n문의 내용 : ");
+        content.append(qnAPostRequestDto.getContent());
+
+        lineMessageService.sendLineMessage(product.getUser(), content.toString() );
 
         QnAPost post = QnAPost.builder()
                 .title(qnAPostRequestDto.getTitle())
