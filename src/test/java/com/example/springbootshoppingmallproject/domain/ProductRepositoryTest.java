@@ -43,4 +43,20 @@ class ProductRepositoryTest {
         //then
         assertThat(products.getContent().get(0).getLargeCategory()).isEqualTo(largeCategory);
     }
+
+    @DisplayName("구매 순 Top 8 쿼리 테스트")
+    @Test
+    public void findTop8ByOrderByPurchaseCountDescTest() {
+
+        //given
+
+        //when
+        List<Product> products = productRepository.findTop8ByOrderByPurchaseCountDesc();
+
+        //then
+        assertThat(products.get(0).getPurchaseCount()).isGreaterThan(products.get(1).getPurchaseCount());
+        assertThat(products.get(1).getPurchaseCount()).isGreaterThan(products.get(2).getPurchaseCount());
+        assertThat(products.get(2).getPurchaseCount()).isGreaterThan(products.get(3).getPurchaseCount());
+        assertThat(products.get(3).getPurchaseCount()).isGreaterThan(products.get(4).getPurchaseCount());
+    }
 }
